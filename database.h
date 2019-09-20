@@ -15,6 +15,7 @@ public:
     bool addCity(const QString&,  const QString&, const double &);
     void printCities();
     void eraseData();
+    void loadList(QWidget *);
 private:
     QSqlDatabase m_db;
 };
@@ -34,9 +35,13 @@ DbManager::DbManager(const QString& path)
    }
 
    //USED THIS TO CREATE THE TABLE BUT YOU ONLY NEED TO CREATE IT ONCE SOOOOOOO
- //QSqlQuery query("CREATE TABLE cities2 (id INTEGER PRIMARY KEY, start TEXT, finish TEXT, distance DOUBLE)");
+ //QSqlQuery query("CREATE TABLE foodData (id INTEGER PRIMARY KEY, city TEXT, finish TEXT, distance DOUBLE)");
  //if(!query.isActive())
- //    qWarning() << "ERROR: " << query.lastError().text();
+ //   qWarning() << "ERROR: " << query.lastError().text();
+ //else{
+ //    qDebug() << "Created new Table" << endl;
+ //    query.
+ //}
 }
 
 bool DbManager::addCity(const QString& start, const QString& finish, const double& distance)
@@ -80,5 +85,6 @@ void DbManager::eraseData(){
     query.prepare("DELETE FROM cities2");
     query.exec();
 }
+
 
 #endif // DATABASE_H
