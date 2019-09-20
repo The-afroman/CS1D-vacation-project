@@ -27,7 +27,10 @@
     </sizepolicy>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: grey</string>
+    <string notr="true">background-color: grey;
+
+
+</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
@@ -48,9 +51,12 @@
             <height>100</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="Trip1">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -70,7 +76,7 @@ border-color: beige;
  font: bold 14px;</string>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>Basic Trip</string>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -78,7 +84,7 @@ border-color: beige;
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="Trip2">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -90,12 +96,12 @@ border-color: beige;
 margin-right: 50px;</string>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>Fastest Trip</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="Trip3">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -107,7 +113,7 @@ margin-right: 50px;</string>
 margin-right: 50px;</string>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>Custom Trip</string>
              </property>
             </widget>
            </item>

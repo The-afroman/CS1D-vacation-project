@@ -21,8 +21,71 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //I want to add hovering stylesheets to the buttons on the first screen dont know where to put this code
-    ui->pushButton->setStyleSheet("QPushButton#pushButton:hover{background-color: red;}");
 
+    {
+    ui->Trip1->setStyleSheet(
+    "   QPushButton#Trip1{"
+    "     margin-left: 50px; margin-right: 50px;"
+    "     background-color: rgb(146, 189, 108);"
+    "     border-style: solid;"
+    "     border-width: 2px;"
+    "     border-color: beige;"
+    "     font: bold 14px;"
+    " }"
+    " QPushButton#Trip1:pressed {"
+    "     background-color: rgb(224, 0, 0);     "
+    " }"
+    " QPushButton#Trip1:hover {"
+    "     background-color: rgb(224, 255, 0);"
+    " }"
+
+    "QPushButton#Trip1:hover:pressed"
+    "{"
+    "    background-color:red;"
+    "}");
+    ui->Trip2->setStyleSheet(
+    "   QPushButton#Trip2{"
+    "     margin-left: 50px; margin-right: 50px;"
+    "     background-color: rgb(146, 189, 108);"
+    "     border-style: solid;"
+    "     border-width: 2px;"
+    "     border-color: beige;"
+    "     font: bold 14px;"
+    " }"
+    " QPushButton#Trip2:pressed {"
+    "     background-color: rgb(224, 0, 0);     "
+    " }"
+    " QPushButton#Trip2:hover {"
+    "     background-color: rgb(224, 255, 0);"
+    " }"
+
+    "QPushButton#Trip2:hover:pressed"
+    "{"
+    "    background-color:red;"
+    "}");
+
+    ui->Trip3->setStyleSheet(
+    "   QPushButton#Trip3{"
+    "     margin-left: 50px; margin-right: 50px;"
+    "     background-color: rgb(146, 189, 108);"
+    "     border-style: solid;"
+    "     border-width: 2px;"
+    "     border-color: beige;"
+    "     font: bold 14px;"
+    " }"
+    " QPushButton#Trip3:pressed {"
+    "     background-color: rgb(224, 0, 0);     "
+    " }"
+    " QPushButton#Trip3:hover {"
+    "     background-color: rgb(224, 255, 0);"
+    " }"
+
+    "QPushButton#Trip3:hover:pressed"
+    "{"
+    "    background-color:red;"
+    "}");
+
+   }
 
     DbManager database("C:/Users/bobby/Desktop/CS1D-vacation-project/testdb");
 
