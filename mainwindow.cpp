@@ -8,6 +8,7 @@
 #include <QSqlQuery>
 #include <iostream>
 #include <fstream>
+#include <QLayout>
 using namespace std;
 
 void loadCityData(DbManager &);
@@ -17,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+    //I want to add hovering stylesheets to the buttons on the first screen dont know where to put this code
+    ui->pushButton->setStyleSheet("QPushButton#pushButton:hover{background-color: red;}");
+
 
     DbManager database("C:/Users/bobby/Desktop/CS1D-vacation-project/testdb");
 
@@ -73,4 +79,9 @@ void loadCityData(DbManager & db){
     else{
         std::cout << "Could not open data.csv" << endl;
     }
+}
+
+void MainWindow::on_pushButton_pressed()
+{
+
 }
