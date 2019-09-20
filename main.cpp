@@ -13,12 +13,12 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     DbManager test("C:/Users/bobby/Desktop/CS1D-vacation-project/testdb");
-    //test.addCity("Paris", 100);
-   // test.printCities();
-    //cout << "deleting Data.." << endl;
+
    // test.eraseData();
+
+    loadCityData(test);
+
     test.printCities();
-    //loadCityData(test);
 
     return a.exec();
 }
@@ -37,7 +37,7 @@ void loadCityData(DbManager & db){
         while(!input.eof()){
            getline(input, startCity , ',');
            getline(input, endCity , ',');
-           getline(input, distance , ',');
+           getline(input, distance , '\n');
            db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
         }
     }

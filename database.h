@@ -71,8 +71,7 @@ void DbManager::printCities(){
        QString start = query.value(idStart).toString();
        QString finish = query.value(idFinish).toString();
        int distance = query.value(idDistance).toInt();
-       qDebug() << "Name of city: " << start << endl;
-       qDebug() << "Distance From " << finish << " : " << distance << endl << endl;
+       qDebug() <<  start << "," << finish << "," << distance << endl << endl;
     }
 }
 
