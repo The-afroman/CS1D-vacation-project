@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+     ui->setupUi(this);
 
 
     //I want to add hovering stylesheets to the buttons on the first screen dont know where to put this code
@@ -89,6 +89,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     DbManager database("C:/Users/bobby/Desktop/CS1D-vacation-project/testdb");
 
+    //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
+
+    {
     loadCityData(database);
     //I tried implementing this function in Database.h
     //but ran into troubles when passing listWidget or the parent Widget into the db obj
@@ -104,7 +107,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         count++;
     }
-
+    }
 
 
 
@@ -115,10 +118,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-
-}
 
 
 void loadCityData(DbManager & db){
@@ -144,7 +143,18 @@ void loadCityData(DbManager & db){
     }
 }
 
-void MainWindow::on_pushButton_pressed()
-{
 
+void MainWindow::on_Trip1_clicked()
+{
+    cout << "Planning new trip..." << endl;
+}
+
+void MainWindow::on_Trip2_clicked()
+{
+    cout << "Planning custom trip starting at london..." << endl;
+}
+
+void MainWindow::on_Trip3_clicked()
+{
+    cout << "Planning totally custom trip..." << endl;
 }
