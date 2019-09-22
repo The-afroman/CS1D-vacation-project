@@ -93,6 +93,7 @@ MainWindow::MainWindow(QWidget *parent) :
         count++;
     }
     database.printCities();
+    database.printFoods();
 }
 
 MainWindow::~MainWindow()

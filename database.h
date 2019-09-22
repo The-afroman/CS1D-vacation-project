@@ -17,7 +17,7 @@ public:
     bool addCity(const QString&,  const QString&, const double &);
     void printCities();
     void eraseData();
-    void loadList(QWidget *);
+    void printFoods();
 private:
     QSqlDatabase m_db;
 };
@@ -85,6 +85,20 @@ void DbManager::printCities(){
     }
 }
 
+void DbManager::printFoods(){
+    QSqlQuery query("SELECT * FROM foods");
+    int idStart = query.record().indexOf("city");
+    int idFinish = query.record().indexOf("food");
+    int idDistance = query.record().indexOf("price");
+    while (query.next())
+    {
+       QString city = query.value(idStart).toString();
+       QString food = query.value(idFinish).toString();
+       double price = query.value(idDistance).toDouble();
+       qDebug() <<  city << "," << food << "," << price << endl << endl;
+    }
+}
+
 void DbManager::eraseData(){
     QSqlQuery query;
     query.prepare("DELETE FROM citydata");
@@ -94,7 +108,7 @@ void DbManager::eraseData(){
 void loadCityData(DbManager & db){
 
     std::ifstream input;
-    input.open("/home/f/projects/CS1D-vacation-project/data.csv");
+    input.open("/home/f/projects/CS1D-vacation-project/distancedata.csv");
     std::string startCity;
     std::string endCity;
     std::string distance;
@@ -113,5 +127,4 @@ void loadCityData(DbManager & db){
         std::cout << "Could not open data.csv" << std::endl;
     }
 }
-
 #endif // DATABASE_H
