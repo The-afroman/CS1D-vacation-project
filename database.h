@@ -34,14 +34,17 @@ DbManager::DbManager(const QString& path)
       qDebug() << "Database: connection ok";
    }
 
-   //USED THIS TO CREATE THE TABLE BUT YOU ONLY NEED TO CREATE IT ONCE SOOOOOOO
- //QSqlQuery query("CREATE TABLE foodData (id INTEGER PRIMARY KEY, city TEXT, finish TEXT, distance DOUBLE)");
- //if(!query.isActive())
- //   qWarning() << "ERROR: " << query.lastError().text();
- //else{
- //    qDebug() << "Created new Table" << endl;
- //    query.
- //}
+/*
+USED THIS TO CREATE THE TABLE BUT YOU ONLY NEED TO CREATE IT ONCE SOOOOOOO
+
+QSqlQuery query("CREATE TABLE citydata (start TEXT, finish TEXT, distance DOUBLE)");
+if(!query.isActive())
+    qWarning() << "ERROR: " << query.lastError().text();
+else{
+    qDebug() << "Created new Table" << endl;
+    query.isActive();
+    }
+*/
 }
 
 bool DbManager::addCity(const QString& start, const QString& finish, const double& distance)
@@ -49,7 +52,7 @@ bool DbManager::addCity(const QString& start, const QString& finish, const doubl
     bool success = false;
        // you should check if args are ok first...
        QSqlQuery query;
-       query.prepare("INSERT INTO cities2 (start, finish, distance) VALUES (:start, :finish, :distance)");
+       query.prepare("INSERT INTO citydata (start, finish, distance) VALUES (:start, :finish, :distance)");
        query.bindValue(":start", start);
        query.bindValue(":finish", finish);
        query.bindValue(":distance", distance);
@@ -59,7 +62,7 @@ bool DbManager::addCity(const QString& start, const QString& finish, const doubl
        }
        else
        {
-            qDebug() << "addPerson error:  "
+            qDebug() << "add error:  "
                      << query.lastError();
        }
 
@@ -67,7 +70,7 @@ bool DbManager::addCity(const QString& start, const QString& finish, const doubl
 }
 
 void DbManager::printCities(){
-    QSqlQuery query("SELECT * FROM cities2");
+    QSqlQuery query("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
     int idFinish = query.record().indexOf("finish");
     int idDistance = query.record().indexOf("distance");
@@ -82,7 +85,7 @@ void DbManager::printCities(){
 
 void DbManager::eraseData(){
     QSqlQuery query;
-    query.prepare("DELETE FROM cities2");
+    query.prepare("DELETE FROM citydata");
     query.exec();
 }
 
