@@ -10,6 +10,14 @@
 #include <iostream>
 #include <fstream>
 
+/*
+ * NOTE, tables are:
+ *  cities table: start TEXT, finish TEXT, distance DOUBLE
+ *  foods table : city TEXT, food TEXT, price NUMERIC
+ *
+ */
+
+
 class DbManager
 {
 public:
