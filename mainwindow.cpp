@@ -1,24 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "database.h"
-#include <QtSql/QSql>
-#include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlDriver>
-#include <QtSql/QSqlError>
-#include <QSqlQuery>
-#include <iostream>
-#include <fstream>
 #include <QLayout>
 using namespace std;
-
-void loadCityData(DbManager &);
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
      ui->setupUi(this);
-
 
     //I want to add hovering stylesheets to the buttons on the first screen dont know where to put this code
 
@@ -118,31 +108,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-
-void loadCityData(DbManager & db){
-
-    ifstream input;
-    input.open("/home/f/projects/CS1D-vacation-project/data.csv");
-    string startCity;
-    string endCity;
-    string distance;
-    string dummyLine;
-
-    if(input.is_open()){
-        getline(input, dummyLine);
-        while(!input.eof()){
-           getline(input, startCity , ',');
-           getline(input, endCity , ',');
-           getline(input, distance , '\n');
-           db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
-        }
-    }
-    else{
-        std::cout << "Could not open data.csv" << endl;
-    }
 }
 
 

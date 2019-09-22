@@ -7,6 +7,8 @@
 #include <QtSql/QSqlQuery>
 #include <QDebug>
 #include <QSqlRecord>
+#include <iostream>
+#include <fstream>
 
 class DbManager
 {
@@ -89,5 +91,27 @@ void DbManager::eraseData(){
     query.exec();
 }
 
+void loadCityData(DbManager & db){
+
+    std::ifstream input;
+    input.open("/home/f/projects/CS1D-vacation-project/data.csv");
+    std::string startCity;
+    std::string endCity;
+    std::string distance;
+    std::string dummyLine;
+
+    if(input.is_open()){
+        getline(input, dummyLine);
+        while(!input.eof()){
+           getline(input, startCity , ',');
+           getline(input, endCity , ',');
+           getline(input, distance , '\n');
+           db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
+        }
+    }
+    else{
+        std::cout << "Could not open data.csv" << std::endl;
+    }
+}
 
 #endif // DATABASE_H
