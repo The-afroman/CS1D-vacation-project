@@ -121,7 +121,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color :rgb(234, 234, 234)</string>
+           <string notr="true">background-color :rgb(255, 255, 255)</string>
           </property>
          </widget>
         </item>
@@ -129,11 +129,13 @@
          <widget class="QLabel" name="label_2">
           <property name="styleSheet">
            <string notr="true">font: 75 22pt &quot;Times New Roman&quot;;
-background-color: rgb(221, 207, 255)</string>
+background-color: rgb(255, 255, 255)</string>
           </property>
           <property name="text">
-           <string>Welcome to our CS1D European Trip Planner! 
-Below listed is all the available cities and options for planning your trip.</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400; color:#000000;&quot;&gt;Welcome to our CS1D European Trip Planner! &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400; color:#000000;&quot;&gt;Below listed is all the available cities and options for planning your trip.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -165,7 +167,7 @@ Below listed is all the available cities and options for planning your trip.</st
      <x>0</x>
      <y>0</y>
      <width>1078</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
