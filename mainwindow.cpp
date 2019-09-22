@@ -87,27 +87,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
    }
 
-    DbManager database("C:/Users/bobby/Desktop/CS1D-vacation-project/testdb");
+    DbManager database("/home/f/projects/CS1D-vacation-project/cities.db");
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
 
     {
-    loadCityData(database);
+
+    //loadCityData(database);
     //I tried implementing this function in Database.h
     //but ran into troubles when passing listWidget or the parent Widget into the db obj
 
-    QSqlQuery query("SELECT * FROM cities2");
+    QSqlQuery query("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
     int count = 10;
     while (query.next())
     {
-        if(count %10 == 0 && count < 100){
+        if(count %10 == 0 && count <= 110){
             QString start = query.value(idStart).toString();
             ui->listWidget->addItem(start);
         }
         count++;
     }
     }
+    database.printCities();
 
 
 
@@ -123,7 +125,7 @@ MainWindow::~MainWindow()
 void loadCityData(DbManager & db){
 
     ifstream input;
-    input.open("C:/Users/bobby/Desktop/CS1D-vacation-project/data.csv");
+    input.open("/home/f/projects/CS1D-vacation-project/data.csv");
     string startCity;
     string endCity;
     string distance;
