@@ -1,10 +1,6 @@
 #include "shortesttripwindow.h"
 #include "ui_shortesttripwindow.h"
-#include "database.h"
-#include <QDebug>
 #include <QPixmap>
-
-void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities);
 
 ShortestTripWindow::ShortestTripWindow(QWidget *parent) :
     QDialog(parent),
@@ -23,17 +19,5 @@ ShortestTripWindow::~ShortestTripWindow()
 
 void ShortestTripWindow::on_confirmTrip_clicked()
 {
-    qDebug() << ui->spinBox1->value();
-    ui->spinBox1->setRange(1,11);
 
-    std::list<QString> * orderedCities = new std::list<QString>;
-    findRouteFastest(orderedCities, ui->spinBox1->value());
-
-    std::list<QString>::iterator it;
-
-    qDebug() << "START ORDERED CITIES\n";
-    for(it = orderedCities->begin();it != orderedCities->end(); it++)
-    {
-        qDebug() << *it << " ";
-    }
 }
