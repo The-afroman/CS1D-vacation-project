@@ -59,13 +59,32 @@ bool checkCity(QString name, std::list<QString> * orderedCities)
     return true;
 }
 
-void findRouteFastest(QString start, std::list<QString> * orderedCities)
+// finds the shortest first trip and makes that the starting city
+QString findFirstCity()
+{
+    QSqlQuery query;
+    query.exec("SELECT start, MIN(distance) FROM citydata");
+    query.first();
+    return query.value(0).toString();
+}
+
+void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities)
 {
     QSqlQuery query;
     query.exec("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
     int idFinish = query.record().indexOf("finish");
     int idDistance = query.record().indexOf("distance");
+    QString start;
+    if(orderedCities->size() == 0)
+    {
+        start = findFirstCity();
+        orderedCities->push_back(start);
+    }
+    else
+    {
+        start = orderedCities->back();
+    }
     QString finish;
     //I seriously couldn't think of anything better to do :(
     double distance = 100000;
@@ -83,19 +102,19 @@ void findRouteFastest(QString start, std::list<QString> * orderedCities)
     for(int i=0; i<10; i++)
     {
 
-        //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
-        if(query.value(idDistance).toDouble() <= distance && checkCity(query.value(idFinish).toString(), orderedCities))
+        if(query.value(idDistance).toDouble() < distance && checkCity(query.value(idFinish).toString(), orderedCities))
         {
+            qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
             distance = query.value(idDistance).toDouble();
             finish = query.value(idFinish).toString();
         }
         query.next();
     }
     orderedCities->push_back(finish);
-    if(orderedCities->size() < 11)
+    if(orderedCities->size() < numCities)
     {
         query.finish();
-        findRouteFastest(finish, orderedCities);
+        findRouteFastest(orderedCities, numCities);
     }
 }
 #endif // FINDROUTE_H

@@ -97,8 +97,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //database.printCities();
     //database.printFoods();
     std::list<QString> * orderedCities = new std::list<QString>;
-    orderedCities->push_back("Paris");
-    findRouteFastest("Paris", orderedCities);
+    findRouteFastest(orderedCities, 11);
     std::list<QString>::iterator it;
     qDebug() << "START ORDERED CITIES\n";
     for(it = orderedCities->begin();it != orderedCities->end(); it++)
