@@ -71,13 +71,6 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QLabel" name="label_pic">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QSpinBox" name="spinBox1">
@@ -100,6 +93,25 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
   </widget>
+  <widget class="QLabel" name="label_pic">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>961</width>
+     <height>621</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>label_pic</zorder>
+  <zorder>textBrowser</zorder>
+  <zorder>confirmTrip</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>spinBox1</zorder>
+  <zorder>orderedCityList</zorder>
  </widget>
  <resources/>
  <connections/>

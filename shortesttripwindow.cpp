@@ -8,8 +8,8 @@ ShortestTripWindow::ShortestTripWindow(QWidget *parent) :
     ui(new Ui::ShortestTripWindow)
 {
     ui->setupUi(this);
-
-    QPixmap pix("C:/Users/m3isa/OneDrive/Documents/CS1D Projects/map of europe.jpg");
+    QString path = qApp->applicationDirPath();
+    QPixmap pix(path + "/map of europe.jpg");
     ui->label_pic->setPixmap(pix.scaled(960, 622, Qt::KeepAspectRatio));
 
 }
