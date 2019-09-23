@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "database.h"
 #include "findRoute.h"
+#include "shortesttripwindow.h"
 #include <QLayout>
 using namespace std;
 
@@ -114,6 +115,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_Trip1_clicked()
 {
     cout << "Planning new trip..." << endl;
+
+    ShortestTripWindow shortestTripWindow;
+    shortestTripWindow.setModal(true);
+    shortestTripWindow.exec();
+
 }
 
 void MainWindow::on_Trip2_clicked()

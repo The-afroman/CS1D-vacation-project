@@ -26,16 +26,19 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        shortesttripwindow.cpp
 
 HEADERS += \
         city.h \
         database.h \
         findRoute.h \
-        mainwindow.h
+        mainwindow.h \
+        shortesttripwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        shortesttripwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
