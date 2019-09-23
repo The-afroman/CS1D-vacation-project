@@ -1,5 +1,6 @@
 #include "shortesttripwindow.h"
 #include "ui_shortesttripwindow.h"
+#include "database.h"
 #include <QPixmap>
 
 ShortestTripWindow::ShortestTripWindow(QWidget *parent) :
@@ -18,14 +19,12 @@ ShortestTripWindow::~ShortestTripWindow()
     delete ui;
 }
 
-void ShortestTripWindow::on_showTrip_clicked()
+void ShortestTripWindow::on_confirmTrip_clicked()
 {
-<<<<<<< Updated upstream
 
-=======
     ui->orderedCityList->clear();
 
-    qDebug() << ui->spinBox1->value();
+    //qDebug() << ui->spinBox1->value();
     ui->spinBox1->setRange(1,11);
 
     std::list<QString> * orderedCities = new std::list<QString>;
@@ -33,7 +32,7 @@ void ShortestTripWindow::on_showTrip_clicked()
 
     std::list<QString>::iterator it;
 
-    qDebug() << "START ORDERED CITIES\n";
+    //qDebug() << "START ORDERED CITIES\n";
     for(it = orderedCities->begin();it != orderedCities->end(); it++)
     {
         qDebug() << *it << " ";
@@ -41,5 +40,4 @@ void ShortestTripWindow::on_showTrip_clicked()
         QString start = *it;
         ui->orderedCityList->addItem(start);
     }
->>>>>>> Stashed changes
 }
