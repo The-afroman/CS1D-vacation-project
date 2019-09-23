@@ -31,6 +31,7 @@ SOURCES += \
 HEADERS += \
         city.h \
         database.h \
+        findRoute.h \
         mainwindow.h
 
 FORMS += \

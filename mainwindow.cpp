@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "database.h"
+#include "findRoute.h"
 #include <QLayout>
 using namespace std;
 
@@ -74,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
     "    background-color:red;"
     "}");
 
-   }
+    }
 
     DbManager database("/home/f/projects/CS1D-vacation-project/cities.db");
 
@@ -92,8 +93,17 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         count++;
     }
-    database.printCities();
-    database.printFoods();
+    //database.printCities();
+    //database.printFoods();
+    std::list<QString> * orderedCities = new std::list<QString>;
+    orderedCities->push_back("Paris");
+    findRouteFastest("Paris", orderedCities);
+    std::list<QString>::iterator it;
+    qDebug() << "START ORDERED CITIES\n";
+    for(it = orderedCities->begin();it != orderedCities->end(); it++)
+    {
+        qDebug() << *it << " ";
+    }
 }
 
 MainWindow::~MainWindow()

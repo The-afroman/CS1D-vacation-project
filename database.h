@@ -22,7 +22,8 @@ class DbManager
 {
 public:
     DbManager(const QString& path);
-    bool addCity(const QString&,  const QString&, const double &);
+    bool addCity(const QString&,  const QString&, const double&);
+    bool addFood(const QString&, const QString&, const double&);
     void printCities();
     void eraseData();
     void printFoods();
@@ -60,23 +61,45 @@ else{
 bool DbManager::addCity(const QString& start, const QString& finish, const double& distance)
 {
     bool success = false;
-       // you should check if args are ok first...
-       QSqlQuery query;
-       query.prepare("INSERT INTO citydata (start, finish, distance) VALUES (:start, :finish, :distance)");
-       query.bindValue(":start", start);
-       query.bindValue(":finish", finish);
-       query.bindValue(":distance", distance);
-       if(query.exec())
-       {
-           success = true;
-       }
-       else
-       {
-            qDebug() << "add error:  "
-                     << query.lastError();
-       }
+    // you should check if args are ok first...
+    QSqlQuery query;
+    query.prepare("INSERT INTO citydata (start, finish, distance) VALUES (:start, :finish, :distance)");
+    query.bindValue(":start", start);
+    query.bindValue(":finish", finish);
+    query.bindValue(":distance", distance);
+    if(query.exec())
+    {
+       success = true;
+    }
+    else
+    {
+        qDebug() << "city add error:  "
+                 << query.lastError();
+    }
 
-       return success;
+    return success;
+}
+
+bool DbManager::addFood(const QString & city, const QString & food, const double & price)
+{
+    bool success = false;
+    //err checking needed
+    QSqlQuery query;
+    query.prepare("INSERT INTO foods (city, food, price) VALUES (:city, :food, :price)");
+    query.bindValue(":city", city);
+    query.bindValue(":food", food);
+    query.bindValue(":price", price);
+    if(query.exec())
+    {
+       success = true;
+    }
+    else
+    {
+        qDebug() << "food add error:  "
+                 << query.lastError();
+    }
+
+    return success;
 }
 
 void DbManager::printCities(){
