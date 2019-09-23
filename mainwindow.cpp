@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "database.h"
-#include "findRoute.h"
-#include "shortesttripwindow.h"
 #include <QLayout>
+#include "shortesttripwindow.h"
+#include "database.h"
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -96,14 +96,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     //database.printCities();
     //database.printFoods();
-    std::list<QString> * orderedCities = new std::list<QString>;
-    findRouteFastest(orderedCities, 11);
-    std::list<QString>::iterator it;
-    qDebug() << "START ORDERED CITIES\n";
-    for(it = orderedCities->begin();it != orderedCities->end(); it++)
-    {
-        qDebug() << *it << " ";
-    }
+
 }
 
 MainWindow::~MainWindow()

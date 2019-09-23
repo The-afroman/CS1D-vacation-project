@@ -1,7 +1,8 @@
 #ifndef SHORTESTTRIPWINDOW_H
 #define SHORTESTTRIPWINDOW_H
-
+#pragma once
 #include <QDialog>
+#include <QSpinBox>
 
 namespace Ui {
 class ShortestTripWindow;
@@ -19,6 +20,7 @@ private slots:
     void on_confirmTrip_clicked();
 
 private:
+
     Ui::ShortestTripWindow *ui;
 };
 

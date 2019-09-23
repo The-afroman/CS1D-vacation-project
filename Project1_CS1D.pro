@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        database.cpp \
         main.cpp \
         mainwindow.cpp \
         shortesttripwindow.cpp
@@ -32,7 +33,6 @@ SOURCES += \
 HEADERS += \
         city.h \
         database.h \
-        findRoute.h \
         mainwindow.h \
         shortesttripwindow.h
 
