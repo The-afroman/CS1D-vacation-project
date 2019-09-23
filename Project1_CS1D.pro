@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         database.cpp \
+        login.cpp \
         main.cpp \
         mainwindow.cpp \
         shortesttripwindow.cpp
@@ -33,10 +34,12 @@ SOURCES += \
 HEADERS += \
         city.h \
         database.h \
+        login.h \
         mainwindow.h \
         shortesttripwindow.h
 
 FORMS += \
+        login.ui \
         mainwindow.ui \
         shortesttripwindow.ui
 
