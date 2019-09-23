@@ -77,8 +77,8 @@ MainWindow::MainWindow(QWidget *parent) :
     "}");
 
     }
-
-    DbManager database("/home/f/projects/CS1D-vacation-project/cities.db");
+    QString path = qApp->applicationDirPath();
+    DbManager database(path + "/cities.db");
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
     //loadCityData(database);
