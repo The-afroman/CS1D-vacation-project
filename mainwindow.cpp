@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "shortesttripwindow.h"
 #include "database.h"
 #include <QLayout>
 using namespace std;
@@ -101,9 +102,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//Myles Edited
 void MainWindow::on_Trip1_clicked()
 {
     cout << "Planning new trip..." << endl;
+
+    ShortestTripWindow shortestTripWindow;
+    shortestTripWindow.setModal(true);
+    shortestTripWindow.exec();
 }
 
 void MainWindow::on_Trip2_clicked()
