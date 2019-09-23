@@ -16,7 +16,7 @@ public:
     ~ShortestTripWindow();
 
 private slots:
-    void on_confirmTrip_clicked();
+    void on_showTrip_clicked();
 
 private:
     Ui::ShortestTripWindow *ui;
