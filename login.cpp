@@ -31,7 +31,7 @@ void login::on_pushButton_login_clicked()
          w->show();
 
     }
-    if(username ==  "admin" && password == "admin") {
+    else if(username ==  "admin" && password == "admin") {
         QMessageBox::information(this,QObject::tr("System Message"),tr("Login successful!"),QMessageBox::Ok);
         qDebug() << "SUCCESS";
         admin *h =  new admin(this);
