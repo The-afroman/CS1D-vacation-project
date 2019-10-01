@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QLayout>
+#include <iostream>
 #include "shortesttripwindow.h"
 #include "database.h"
+#include "trippage.h"
 
 using namespace std;
 
@@ -108,9 +110,23 @@ void MainWindow::on_Trip1_clicked()
 {
     cout << "Planning new trip..." << endl;
 
-    ShortestTripWindow shortestTripWindow;
-    shortestTripWindow.setModal(true);
-    shortestTripWindow.exec();
+   // ShortestTripWindow shortestTripWindow;
+   // shortestTripWindow.setModal(true);
+   // shortestTripWindow.exec();
+
+    QString path = qApp->applicationDirPath();
+    DbManager database(path + "/cities.db");
+    QSqlQuery query;
+    std::list<QString> * cities = new std::list<QString>;
+    findRouteFastest(cities, 11);
+    std::list<QString>::iterator it;
+    for(it = cities->begin();it != cities->end(); it++)
+    {
+        qDebug() << "adding page for " << *it << endl;
+        ui->stackedWidget->addWidget(new tripPage(query, *it));
+    }
+
+    qDebug() << ui->stackedWidget->count() << " number of pages total." << endl;
 
 }
 

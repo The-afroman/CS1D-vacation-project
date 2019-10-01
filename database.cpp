@@ -1,5 +1,6 @@
 #include "database.h"
 
+
 DbManager::DbManager(const QString& path)
 {
    m_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -98,6 +99,7 @@ void DbManager::printFoods(){
        qDebug() <<  city << "," << food << "," << price << endl << endl;
     }
 }
+
 
 void DbManager::eraseData(){
     QSqlQuery query;
@@ -200,7 +202,7 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
     QString start;
     if(orderedCities->size() == 0)
     {
-        start = findFirstCity();
+        start = "Paris";
         orderedCities->push_back(start);
     }
     else

@@ -11,8 +11,10 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <vector>
 
 using std::string;
+using namespace std;
 /*
  * NOTE, tables are:
  *  cities table: start TEXT, finish TEXT, distance DOUBLE

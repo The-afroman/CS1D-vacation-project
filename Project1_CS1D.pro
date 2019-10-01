@@ -29,14 +29,16 @@ SOURCES += \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
-        shortesttripwindow.cpp
+        shortesttripwindow.cpp \
+        trippage.cpp
 
 HEADERS += \
         city.h \
         database.h \
         login.h \
         mainwindow.h \
-        shortesttripwindow.h
+        shortesttripwindow.h \
+        trippage.h
 
 FORMS += \
         login.ui \
