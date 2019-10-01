@@ -14,7 +14,7 @@
 
     public:
 
-        tripPage( QWidget *parent = 0);
+        tripPage( QWidget *parent = nullptr);
         ~tripPage();
 
 

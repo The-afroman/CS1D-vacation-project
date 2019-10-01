@@ -30,13 +30,9 @@ SOURCES += \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
-<<<<<<< HEAD
         shortesttripwindow.cpp \
-        trippage.cpp
-=======
-        removecity.cpp \
-        shortesttripwindow.cpp
->>>>>>> newmerge
+        trippage.cpp \
+        removecity.cpp
 
 HEADERS += \
         admin.h \
@@ -44,13 +40,9 @@ HEADERS += \
         database.h \
         login.h \
         mainwindow.h \
-<<<<<<< HEAD
         shortesttripwindow.h \
-        trippage.h
-=======
-        removecity.h \
-        shortesttripwindow.h
->>>>>>> newmerge
+        trippage.h \
+        removecity.h
 
 FORMS += \
         admin.ui \

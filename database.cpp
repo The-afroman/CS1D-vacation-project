@@ -210,7 +210,7 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
         start = orderedCities->back();
     }
     QString finish;
-    double distance;
+    double distance = 100000;
 
     bool endSearch = false;
 
@@ -222,7 +222,7 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
             endSearch = true;
         }
     }
-    for(int i=0, distance = query.value(idDistance).toDouble(); i<10; i++)
+    for(int i=0 /*, distance = query.value(idDistance).toDouble()*/; i<10; i++)
     {
 
         if(query.value(idDistance).toDouble() <= distance && checkCity(query.value(idFinish).toString(), orderedCities))

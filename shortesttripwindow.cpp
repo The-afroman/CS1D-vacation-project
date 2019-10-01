@@ -1,6 +1,7 @@
+#include "database.h"
 #include "shortesttripwindow.h"
 #include "ui_shortesttripwindow.h"
-#include "database.h"
+#include <QtDebug>
 #include <QPixmap>
 
 ShortestTripWindow::ShortestTripWindow(QWidget *parent) :
@@ -32,7 +33,7 @@ void ShortestTripWindow::on_confirmTrip_clicked()
 
     std::list<QString>::iterator it;
 
-    //qDebug() << "START ORDERED CITIES\n";
+    qDebug() << "START ORDERED CITIES\n";
     for(it = orderedCities->begin();it != orderedCities->end(); it++)
     {
         qDebug() << *it << " ";
