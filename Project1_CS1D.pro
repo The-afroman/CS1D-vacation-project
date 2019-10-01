@@ -25,24 +25,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        admin.cpp \
         database.cpp \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
+<<<<<<< HEAD
         shortesttripwindow.cpp \
         trippage.cpp
+=======
+        removecity.cpp \
+        shortesttripwindow.cpp
+>>>>>>> newmerge
 
 HEADERS += \
+        admin.h \
         city.h \
         database.h \
         login.h \
         mainwindow.h \
+<<<<<<< HEAD
         shortesttripwindow.h \
         trippage.h
+=======
+        removecity.h \
+        shortesttripwindow.h
+>>>>>>> newmerge
 
 FORMS += \
+        admin.ui \
         login.ui \
         mainwindow.ui \
+        removecity.ui \
         shortesttripwindow.ui
 
 # Default rules for deployment.
@@ -51,4 +65,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    cities.db
+    ../../../../../map of europe.jpg \
+    cities.db \
+    map of europe.jpg
+
+RESOURCES += \

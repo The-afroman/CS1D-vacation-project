@@ -1,4 +1,4 @@
-#include "database.h"
+﻿#include "database.h"
 
 
 DbManager::DbManager(const QString& path)
@@ -210,8 +210,7 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
         start = orderedCities->back();
     }
     QString finish;
-    //I seriously couldn't think of anything better to do :(
-    double distance = 100000;
+    double distance;
 
     bool endSearch = false;
 
@@ -223,10 +222,10 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
             endSearch = true;
         }
     }
-    for(int i=0; i<10; i++)
+    for(int i=0, distance = query.value(idDistance).toDouble(); i<10; i++)
     {
 
-        if(query.value(idDistance).toDouble() < distance && checkCity(query.value(idFinish).toString(), orderedCities))
+        if(query.value(idDistance).toDouble() <= distance && checkCity(query.value(idFinish).toString(), orderedCities))
         {
             qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
             distance = query.value(idDistance).toDouble();
