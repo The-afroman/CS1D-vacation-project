@@ -195,6 +195,14 @@ QString findFirstCity()
 void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities)
 {
     QSqlQuery query;
+    query.exec("SELECT MAX(distance) FROM citydata");
+    query.first();
+    double distance = query.value(0).toDouble();
+    //qDebug() << distance <<"\n\n";
+    query.exec("SELECT COUNT(DISTINCT start) FROM citydata");
+    query.first();
+    int cities = query.value(0).toInt();
+    //qDebug() << cities <<endl <<endl;
     query.exec("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
     int idFinish = query.record().indexOf("finish");
@@ -210,7 +218,6 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
         start = orderedCities->back();
     }
     QString finish;
-    double distance = 100000;
 
     bool endSearch = false;
 
@@ -222,7 +229,7 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
             endSearch = true;
         }
     }
-    for(int i=0 /*, distance = query.value(idDistance).toDouble()*/; i<10; i++)
+    for(int i=0 /*, distance = query.value(idDistance).toDouble()*/; i<cities-1; i++)
     {
 
         if(query.value(idDistance).toDouble() <= distance && checkCity(query.value(idFinish).toString(), orderedCities))

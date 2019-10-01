@@ -84,17 +84,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
     //loadCityData(database);
-    QSqlQuery query("SELECT * FROM citydata");
+    QSqlQuery query("SELECT DISTINCT start FROM citydata");
     int idStart = query.record().indexOf("start");
-    int count = 10;
     while (query.next())
     {
-        if(count %10 == 0 && count <= 110)
-        {
-            QString start = query.value(idStart).toString();
-            ui->listWidget->addItem(start);
-        }
-        count++;
+        QString start = query.value(idStart).toString();
+        ui->listWidget->addItem(start);
     }
     //database.printCities();
     //database.printFoods();
