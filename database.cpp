@@ -195,18 +195,18 @@ QString findFirstCity()
 void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities)
 {
     QSqlQuery query;
-    query.exec("SELECT MAX(distance) FROM citydata");
-    query.first();
-    double distance = query.value(0).toDouble();
+
+    //query.exec("SELECT MAX(distance) FROM citydata");
+    //query.first();
+    //double distance = query.value(0).toDouble();
     //qDebug() << distance <<"\n\n";
-    query.exec("SELECT COUNT(DISTINCT start) FROM citydata");
-    query.first();
-    int cities = query.value(0).toInt();
+    //query.exec("SELECT COUNT(DISTINCT start) FROM citydata");
+    //query.first();
+    //int cities = query.value(0).toInt();
     //qDebug() << cities <<endl <<endl;
-    query.exec("SELECT * FROM citydata");
-    int idStart = query.record().indexOf("start");
-    int idFinish = query.record().indexOf("finish");
-    int idDistance = query.record().indexOf("distance");
+
+    query.prepare("SELECT * FROM citydata WHERE start= ? ORDER by distance ASC");
+
     QString start;
     if(orderedCities->size() == 0)
     {
@@ -217,28 +217,22 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
     {
         start = orderedCities->back();
     }
+    query.addBindValue(start);
+    query.exec();
+    //int idStart = query.record().indexOf("start");
+    int idFinish = query.record().indexOf("finish");
+    //int idDistance = query.record().indexOf("distance");
     QString finish;
-
     bool endSearch = false;
 
     while(!endSearch && query.next())
     {
-        //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idStart).toString() << " ";
-        if(query.value(idStart).toString() == start)
+        if(checkCity(query.value(idFinish).toString(), orderedCities))
         {
+            //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
+            finish = query.value(idFinish).toString();
             endSearch = true;
         }
-    }
-    for(int i=0 /*, distance = query.value(idDistance).toDouble()*/; i<cities-1; i++)
-    {
-
-        if(query.value(idDistance).toDouble() <= distance && checkCity(query.value(idFinish).toString(), orderedCities))
-        {
-            qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
-            distance = query.value(idDistance).toDouble();
-            finish = query.value(idFinish).toString();
-        }
-        query.next();
     }
     orderedCities->push_back(finish);
     if(orderedCities->size() < numCities)
