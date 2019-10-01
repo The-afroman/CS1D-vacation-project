@@ -20,7 +20,6 @@ using std::string;
  *
  */
 
-
 class DbManager
 {
 public:
@@ -33,6 +32,7 @@ public:
 private:
     QSqlDatabase m_db;
 };
+
 bool checkCity(QString name, std::list<QString> * orderedCities);
 QString findFirstCity();
 void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities);

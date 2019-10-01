@@ -9,7 +9,7 @@ removecity::removecity(QWidget *parent) :
 {
     ui->setupUi(this);
     QString path = qApp->applicationDirPath();
-    DbManager database("C:/Users/Mohammed/Workspace/CS1D-vacation-project-master/cities.db");
+    DbManager database( path + "/cities.db");
     QSqlQuery query("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
     int count = 10;
