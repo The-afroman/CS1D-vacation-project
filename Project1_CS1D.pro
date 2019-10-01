@@ -25,22 +25,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        admin.cpp \
         database.cpp \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
+        removecity.cpp \
         shortesttripwindow.cpp
 
 HEADERS += \
+        admin.h \
         city.h \
         database.h \
         login.h \
         mainwindow.h \
+        removecity.h \
         shortesttripwindow.h
 
 FORMS += \
+        admin.ui \
         login.ui \
         mainwindow.ui \
+        removecity.ui \
         shortesttripwindow.ui
 
 # Default rules for deployment.
@@ -49,4 +55,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    cities.db
+    ../../../../../map of europe.jpg \
+    cities.db \
+    map of europe.jpg
+
+RESOURCES += \

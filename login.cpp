@@ -3,6 +3,7 @@
 #include "QMessageBox"
 #include "qdebug.h"
 #include "mainwindow.h"
+#include "admin.h"
 
 login::login(QWidget *parent) :
     QDialog(parent),
@@ -29,6 +30,13 @@ void login::on_pushButton_login_clicked()
          this->close();
          w->show();
 
+    }
+    if(username ==  "admin" && password == "admin") {
+        QMessageBox::information(this,QObject::tr("System Message"),tr("Login successful!"),QMessageBox::Ok);
+        qDebug() << "SUCCESS";
+        admin *h =  new admin(this);
+        this->close();
+        h->show();
     }
 
     else {
