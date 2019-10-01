@@ -130,48 +130,6 @@ void loadCityData(DbManager & db){
     }
 }
 
-/*
-QString * findRoute(deque<QString> cities)
-{
-    QSqlQuery query("SELECT * FROM citydata");
-    int idStart = query.record().indexOf("start");
-    int idFinish = query.record().indexOf("finish");
-    int idDistance = query.record().indexOf("distance");
-    QString start = cities.front();
-    QString finish;
-    double distance;
-    deque<QString> orderedCities;
-
-    bool endSearch = false;
-
-    while(query.next() && !endSearch)
-    {
-        if(query.value(idStart).toString() == start)
-        {
-            distance = query.value(idDistance).toDouble();
-            endSearch = true;
-        }
-    }
-    for(int i=0; i<10; i++)shortesttripwindow
-    {
-        if(query.value(idDistance).toDouble() < distance)
-        {
-            deque<QString>::iterator it = cities.begin();
-            bool found = false;
-            while(it != cities.end() && !found)
-            {
-                if(query.value(idFinish).toString() == *it)
-                    found = true;
-                    distance = query.value(idDistance).toDouble();
-                    finish = query.value(idFinish).toString();
-                it++;
-            }
-        }
-        query.next();
-    }
-}
-*/
-
 bool checkCity(QString name, std::list<QString> * orderedCities)
 {
     std::list<QString>::iterator it;
