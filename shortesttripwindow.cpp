@@ -29,7 +29,7 @@ void ShortestTripWindow::on_confirmTrip_clicked()
     ui->spinBox1->setRange(1,11);
 
     std::list<QString> * orderedCities = new std::list<QString>;
-    findRouteFastest(orderedCities, ui->spinBox1->value());
+    findRouteFastest(orderedCities, ui->spinBox1->value(), "Paris");
 
     std::list<QString>::iterator it;
 
