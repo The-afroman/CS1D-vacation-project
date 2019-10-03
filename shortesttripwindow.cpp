@@ -26,10 +26,10 @@ void ShortestTripWindow::on_confirmTrip_clicked()
     ui->orderedCityList->clear();
 
     //qDebug() << ui->spinBox1->value();
-    ui->spinBox1->setRange(1,11);
-
+    ui->spinBox1->setRange(2,11);
     std::list<QString> * orderedCities = new std::list<QString>;
-    findRouteFastest(orderedCities, ui->spinBox1->value(), "Paris");
+    double distanceTot = findRouteFastest(orderedCities, unsigned(long(ui->spinBox1->value())), "Paris");
+    ui->label_2->setNum(distanceTot);
 
     std::list<QString>::iterator it;
 
@@ -42,3 +42,4 @@ void ShortestTripWindow::on_confirmTrip_clicked()
         ui->orderedCityList->addItem(start);
     }
 }
+

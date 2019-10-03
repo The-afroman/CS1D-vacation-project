@@ -150,7 +150,7 @@ QString findFirstCity()
     return query.value(0).toString();
 }
 
-void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity)
+double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double netDistance)
 {
     QSqlQuery query;
 
@@ -179,7 +179,7 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
     query.exec();
     //int idStart = query.record().indexOf("start");
     int idFinish = query.record().indexOf("finish");
-    //int idDistance = query.record().indexOf("distance");
+    int idDistance = query.record().indexOf("distance");
     QString finish;
     bool endSearch = false;
 
@@ -189,6 +189,8 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
         {
             //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
             finish = query.value(idFinish).toString();
+            netDistance += query.value(idDistance).toDouble();
+            qDebug() << netDistance;
             endSearch = true;
         }
     }
@@ -196,11 +198,16 @@ void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCitie
     if(orderedCities->size() < numCities)
     {
         query.finish();
-        findRouteFastest(orderedCities, numCities, startCity);
+        return findRouteFastest(orderedCities, numCities, startCity, netDistance);
     }
+    else
+    {
+        return netDistance;
+    }
+
 }
 
-void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities)
+double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities, double netDistance)
 {
     QSqlQuery query;
     QString start;
@@ -219,7 +226,6 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
     {
         start = orderedCities->back();
     }
-
     query.prepare("SELECT * FROM citydata WHERE start= ? ORDER by distance ASC");
 
     start = orderedCities->back();
@@ -227,7 +233,7 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
     query.exec();
     //int idStart = query.record().indexOf("start");
     int idFinish = query.record().indexOf("finish");
-    //int idDistance = query.record().indexOf("distance");
+    int idDistance = query.record().indexOf("distance");
     QString finish;
     bool endSearch = false;
 
@@ -237,6 +243,7 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
         {
             //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
             finish = query.value(idFinish).toString();
+            netDistance += query.value(idDistance).toDouble();
             endSearch = true;
         }
     }
@@ -244,6 +251,10 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
     if(orderedCities->size() < includedCities->size())
     {
         query.finish();
-        findRouteFastestCustom(orderedCities, includedCities);
+        return findRouteFastestCustom(orderedCities, includedCities, netDistance);
+    }
+    else
+    {
+        return netDistance;
     }
 }

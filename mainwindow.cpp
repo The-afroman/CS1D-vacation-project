@@ -109,22 +109,6 @@ void MainWindow::on_Trip1_clicked()
    shortestTripWindow.setModal(true);
    shortestTripWindow.exec();
 
-    /*
-
-    QString path = qApp->applicationDirPath();
-    DbManager database(path + "/cities.db");
-    QSqlQuery query;
-    std::list<QString> * cities = new std::list<QString>;
-    findRouteFastest(cities, 11);
-    std::list<QString>::iterator it;
-    for(it = cities->begin();it != cities->end();t++)
-    {
-        qDebug() << "adding page for " << *it << endl;
-        //ui->stackedWidget->addWidget(new tripPage(ui->stackedWidget));
-    }
-
-    qDebug() << ui->stackedWidget->count() << " number of pages total." << endl;
-    */
 }
 
 void MainWindow::on_Trip2_clicked()

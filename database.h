@@ -37,7 +37,6 @@ private:
 
 bool checkCity(QString name, std::list<QString> * orderedCities);
 QString findFirstCity();
-void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity);
-void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities);
-
+double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double netDistance=0);
+double findRouteFastestCustom(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double netDistance=0);
 #endif // DATABASE_H
