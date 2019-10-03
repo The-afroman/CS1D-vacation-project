@@ -244,6 +244,6 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
     if(orderedCities->size() < includedCities->size())
     {
         query.finish();
-        findRouteFastest(orderedCities, includedCities);
+        findRouteFastestCustom(orderedCities, includedCities);
     }
 }
