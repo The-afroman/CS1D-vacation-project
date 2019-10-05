@@ -37,6 +37,7 @@ private:
 
 bool checkCity(QString name, std::list<QString> * orderedCities);
 QString findFirstCity();
+void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName);
 void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity);
 void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities);
 

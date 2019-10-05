@@ -1,37 +1,44 @@
 #ifndef TRIPPAGE_H
 #define TRIPPAGE_H
 
-#include <QObject>
-#include <QPushButton>
 #include <QWidget>
-#include <list>
-#include "database.h"
+#include <QMainWindow>
+#include <QLabel>
+using namespace std;
 
 
-    class tripPage : public QWidget
-    {
-        Q_OBJECT
+namespace Ui {
+class tripPage;
+}
 
-    public:
+class tripPage : public QWidget
+{
+    Q_OBJECT
 
-        tripPage( QWidget *parent = nullptr);
-        ~tripPage();
+public:
+    explicit tripPage(QWidget *parent = nullptr);
+    ~tripPage();
 
+    void setTitle(QString &);
+    const QString & getTitle();
+    void setTextButtonOne(QString &);
+    void setTextButtonTwo(QString &);
 
+private slots:
+    void on_pushButton_clicked();
 
-    private:
+    void on_pushButton_2_clicked();
 
-        void initUI();
+signals:
 
-        list<double> *prices;
-        list<QString> *foods;
-        list<QString> *cityNames;
+    void changePageNext();
+    void changePagePrev();
 
-        QPushButton *back;
-        QPushButton *next;
+private:
+    Ui::tripPage *ui;
+    list<QString> foodNames;
+    QLabel * cityTitle;
 
-    };
-
+};
 
 #endif // TRIPPAGE_H
-

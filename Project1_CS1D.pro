@@ -31,8 +31,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         shortesttripwindow.cpp \
-        trippage.cpp \
-        removecity.cpp
+        removecity.cpp \
+        trippage.cpp
 
 HEADERS += \
         admin.h \
@@ -41,15 +41,16 @@ HEADERS += \
         login.h \
         mainwindow.h \
         shortesttripwindow.h \
-        trippage.h \
-        removecity.h
+        removecity.h \
+        trippage.h
 
 FORMS += \
         admin.ui \
         login.ui \
         mainwindow.ui \
         removecity.ui \
-        shortesttripwindow.ui
+        shortesttripwindow.ui \
+        trippage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

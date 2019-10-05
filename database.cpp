@@ -72,6 +72,8 @@ bool DbManager::addFood(const QString & city, const QString & food, const double
     return success;
 }
 
+
+
 void DbManager::printCities(){
     QSqlQuery query("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
@@ -150,6 +152,23 @@ QString findFirstCity()
     return query.value(0).toString();
 }
 
+void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName){
+    QSqlQuery query;
+    query.prepare("SELECT * FROM citydata WHERE city= ?");
+    query.addBindValue(cityName);
+    query.exec();
+    int idFood = query.record().indexOf("food");
+    int idPrice = query.record().indexOf("price");
+    while (query.next())
+    {
+
+       QString food = query.value(idFood).toString();
+       double price = query.value(idPrice).toDouble();
+       foodNames->push_back(food);
+       foodPrices->push_back(price);
+    }
+}
+
 void findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity)
 {
     QSqlQuery query;
@@ -204,6 +223,7 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
 {
     QSqlQuery query;
     QString start;
+    unsigned long long size = 0;
     bool startFound = false;
     if(orderedCities->size() == 0)
     {
@@ -241,9 +261,10 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
         }
     }
     orderedCities->push_back(finish);
-    if(orderedCities->size() < includedCities->size())
+    size = includedCities->size();
+    if(orderedCities->size() < size)
     {
         query.finish();
-        findRouteFastest(orderedCities, includedCities);
+        findRouteFastest(orderedCities, static_cast<long unsigned int>(includedCities->size()), start);
     }
 }

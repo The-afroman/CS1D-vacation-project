@@ -98,33 +98,62 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    for(int i = 0; i< ui->stackedWidget->count(); i++){
+        delete pages[i];
+    }
+    delete pages;
     delete ui;
+
 }
 
 void MainWindow::on_Trip1_clicked()
 {
     cout << "Planning new trip..." << endl;
 
-   ShortestTripWindow shortestTripWindow;
-   shortestTripWindow.setModal(true);
-   shortestTripWindow.exec();
+   //ShortestTripWindow shortestTripWindow;
+   //shortestTripWindow.setModal(true);
+   //shortestTripWindow.exec();
 
-    /*
-
-    QString path = qApp->applicationDirPath();
-    DbManager database(path + "/cities.db");
-    QSqlQuery query;
+    QString temp;
     std::list<QString> * cities = new std::list<QString>;
-    findRouteFastest(cities, 11);
+    std::list<QString> * foodNames = new std::list<QString>;
+    std::list<double> *  foodPrices = new std::list<double>;
+    findRouteFastest(cities, 11, "Paris");
     std::list<QString>::iterator it;
-    for(it = cities->begin();it != cities->end();t++)
+    pages = new tripPage*[11];
+    int count = 0;
+    int listSize = cities->size();
+    for(it = cities->begin();it != cities->end();it++)
     {
+        getFoodData(foodNames, foodPrices, *it);
+        pages[count] = new tripPage;
+        pages[count]->setTitle(*it);
+        if(count == 0){
+            temp = "HIDE";
+            pages[count]->setTextButtonOne(temp);
+        }
+        else if(count == listSize-1){
+            temp = "PREVIOUS CITY";
+            pages[count]->setTextButtonOne(temp);
+            temp = "FINISH TRIP";
+            pages[count]->setTextButtonTwo(temp);
+        }
+        else{
+            temp = "PREVIOUS CITY";
+            pages[count]->setTextButtonOne(temp);
+            temp = "NEXT CITY";
+            pages[count]->setTextButtonTwo(temp);
+        }
+        QObject::connect(pages[count], SIGNAL(changePagePrev()), this, SLOT(pagePrevious()));
+        QObject::connect(pages[count], SIGNAL(changePageNext()), this, SLOT(nextPage()));
+        ui->stackedWidget->addWidget(pages[count]);
+        count++;
         qDebug() << "adding page for " << *it << endl;
-        //ui->stackedWidget->addWidget(new tripPage(ui->stackedWidget));
+
     }
 
     qDebug() << ui->stackedWidget->count() << " number of pages total." << endl;
-    */
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
 void MainWindow::on_Trip2_clicked()
@@ -136,3 +165,26 @@ void MainWindow::on_Trip3_clicked()
 {
     cout << "Planning totally custom trip..." << endl;
 }
+
+
+void MainWindow::pagePrevious(){
+    if(ui->stackedWidget->count() >= 2 && ui->stackedWidget->currentIndex() != 1){
+         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() -1);
+         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+    }
+    else{
+         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+    }
+}
+
+void MainWindow::nextPage(){
+    if(ui->stackedWidget->count() > 1 && ui->stackedWidget->currentIndex() < ui->stackedWidget->count()){
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+        qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+    }
+    else{
+         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+    }
+}
+
+

@@ -141,22 +141,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>331</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>CS1D Project 1 devolped by *Insert Team Name Here*</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_3"/>
      </widget>
     </item>
    </layout>
@@ -167,7 +151,7 @@
      <x>0</x>
      <y>0</y>
      <width>1078</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

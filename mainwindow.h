@@ -3,6 +3,7 @@
 #pragma once
 #include <QMainWindow>
 #include <QListWidgetItem>
+#include "trippage.h"
 
 
 namespace Ui {
@@ -17,8 +18,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
+public slots:
 
+    void pagePrevious();
+    void nextPage();
+
+private slots:
 
     void on_Trip1_clicked();
     void on_Trip2_clicked();
@@ -26,6 +31,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    tripPage **pages;
+
 };
 
 #endif // MAINWINDOW_H
