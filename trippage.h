@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QMainWindow>
 #include <QLabel>
+#include <QSpinBox>
+#include <iostream>
 using namespace std;
 
 
@@ -20,9 +22,11 @@ public:
     ~tripPage();
 
     void setTitle(QString &);
-    const QString & getTitle();
+    QString getTitle()const;
     void setTextButtonOne(QString &);
     void setTextButtonTwo(QString &);
+    void setFoodData(list<QString> *, list<double> *);
+
 
 private slots:
     void on_pushButton_clicked();
@@ -35,9 +39,15 @@ signals:
     void changePagePrev();
 
 private:
+    void setFoodNameLabel(const QString &, int count);
+    void appendFoodLabel(const double &, int count);
+    void initFoodUI();
     Ui::tripPage *ui;
-    list<QString> foodNames;
     QLabel * cityTitle;
+    QLabel ** foodNameLabels;
+    QSpinBox ** foodQtyBox;
+    list<QString> *foodNames;
+    list<double> *foodPrices;
 
 };
 

@@ -122,12 +122,13 @@ void MainWindow::on_Trip1_clicked()
     std::list<QString>::iterator it;
     pages = new tripPage*[11];
     int count = 0;
-    int listSize = cities->size();
+    int listSize = static_cast<int>(cities->size());
     for(it = cities->begin();it != cities->end();it++)
     {
         getFoodData(foodNames, foodPrices, *it);
         pages[count] = new tripPage;
         pages[count]->setTitle(*it);
+        pages[count]->setFoodData(foodNames,foodPrices);
         if(count == 0){
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
