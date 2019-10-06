@@ -82,7 +82,7 @@ void tripPage::setTextButtonTwo(QString & text){
 
 void tripPage::on_pushButton_clicked()
 {
-   emit changePagePrev();
+    emit changePagePrev();
 }
 
 void tripPage::on_pushButton_2_clicked()
