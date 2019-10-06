@@ -6,13 +6,18 @@ tripPage::tripPage(QWidget *parent) :
     ui(new Ui::tripPage)
 {
     ui->setupUi(this);
-
+    foodNames = new list<QString>;
+    foodPrices = new list<double>;
     ui->pushButton->setMinimumSize(150,50);
     ui->pushButton_2->setMinimumSize(150,50);
     cityTitle = new QLabel;
     cityTitle->setMinimumSize(200,100);
     cityTitle->show();
-    ui->NameWindow->layout()->addWidget(cityTitle);
+    ui->titleVBox->setAlignment(cityTitle, Qt::AlignHCenter);
+    ui->titleVBox->setAlignment(Qt::AlignTop);
+
+
+    ui->titleVBox->addWidget(cityTitle);
 }
 
 
@@ -29,31 +34,38 @@ void tripPage::initFoodUI(){
     std::list<double>::iterator dit;
     int count = 0;
     QLabel temp;
-    QFont serifFont("Times", 14, QFont::Bold);
-
+    QFont serifFont("Times", 12, QFont::Bold);
+    //qDebug() << "size of food list is apperantly: " <<  size << endl;
     for(int i = 0; i < size; i++){
-        foodNameLabels[i] = new QLabel;
-        foodNameLabels[i]->setMinimumSize(200, 50);
+        foodNameLabels[i] = new QLabel();
+        foodNameLabels[i]->setGeometry(75,50,0,0);
         foodNameLabels[i]->setFont(serifFont);
         foodNameLabels[i]->show();
-        ui->verticalLayout_2->addWidget(foodNameLabels[i]);
+        ui->vboxLabel->addWidget(foodNameLabels[i]);
+        //qDebug() << "added Label" << endl;
 
-        foodQtyBox[i] = new QSpinBox;
+        foodQtyBox[i] = new QSpinBox();
         foodQtyBox[i]->setRange(0,10000);
-        foodQtyBox[i]->setMinimumSize(25,25);
+        foodQtyBox[i]->setGeometry(25,25,0,0);
         foodQtyBox[i]->show();
-        ui->verticalLayout_3->addWidget(foodQtyBox[i]);
+        ui->vboxLabel->addWidget(foodQtyBox[i]);
+        //qDebug() << "added QtyBox" << endl;
     }
     for(it = foodNames->begin(); it != foodNames->end(); it++){
         setFoodNameLabel(*it, count);
+        //qDebug() << "Label for: " << *it;
         count++;
     }
+
     count = 0;
     for(dit = foodPrices->begin(); dit != foodPrices->end(); dit++){
         appendFoodLabel(*dit, count);
+        count++;
     }
 
-    cout << "Finished adding food Labels." << endl;
+    //cout << "Finished adding food Labels." << endl;
+
+
 }
 
 void tripPage::setTextButtonOne(QString & text){
@@ -79,22 +91,35 @@ void tripPage::on_pushButton_2_clicked()
 }
 
 void tripPage::setFoodNameLabel(const QString & text, int count){
-    foodNameLabels[count]->setText(text);
+    foodNameLabels[count]->setText("Name: " + text);
 }
 
 void tripPage::appendFoodLabel(const double & number, int count){
-    foodNameLabels[count]->setText(foodNameLabels[count]->text() + QString::fromStdString(" " + to_string(number)));
+    foodNameLabels[count]->setText(foodNameLabels[count]->text() + QString::fromStdString("\nPrice: $" + to_string(number).substr(0, 4)));
 }
 
 void tripPage::setTitle(QString & title){
-    cityTitle->setText(title);
+    cityTitle->setText("City:\n" + title);
+    QFont font("Bree Serif", 20);
+    cityTitle->setFont(font);
 }
 QString tripPage::getTitle()const{
     return cityTitle->text();
 }
 
 void tripPage::setFoodData(list<QString> *list1, list<double> *list2){
+
     foodNames = list1;
     foodPrices = list2;
+    /*)
+    list<QString>::iterator it;
+    for(it = list1->begin(); it != list1->end(); it++){
+        foodNames->push_back(*it);
+    }
+    list<double>::iterator dit;
+    for(dit = list2->begin(); dit != list2->end(); dit++){
+        foodPrices->push_back(*dit);
+    }
+    */
     initFoodUI();
 }

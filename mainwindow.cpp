@@ -81,6 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     QString path = qApp->applicationDirPath();
     DbManager database(path + "/cities.db");
+   // database.printFoods();
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
     //loadCityData(database);
@@ -122,6 +123,7 @@ void MainWindow::on_Trip1_clicked()
     std::list<QString>::iterator it;
     pages = new tripPage*[11];
     int count = 0;
+
     int listSize = static_cast<int>(cities->size());
     for(it = cities->begin();it != cities->end();it++)
     {
@@ -150,7 +152,8 @@ void MainWindow::on_Trip1_clicked()
         ui->stackedWidget->addWidget(pages[count]);
         count++;
         qDebug() << "adding page for " << *it << endl;
-
+        foodNames->clear();
+        foodPrices->clear();
     }
 
     qDebug() << ui->stackedWidget->count() << " number of pages total." << endl;
@@ -171,17 +174,17 @@ void MainWindow::on_Trip3_clicked()
 void MainWindow::pagePrevious(){
     if(ui->stackedWidget->count() >= 2 && ui->stackedWidget->currentIndex() != 1){
          ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() -1);
-         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+         //qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
     else{
-         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+         //qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
 }
 
 void MainWindow::nextPage(){
     if(ui->stackedWidget->count() > 1 && ui->stackedWidget->currentIndex() < ui->stackedWidget->count()){
         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-        qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+       // qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
     else{
          qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;

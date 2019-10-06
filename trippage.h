@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <iostream>
+#include <QDebug>
 using namespace std;
 
 
@@ -26,6 +27,7 @@ public:
     void setTextButtonOne(QString &);
     void setTextButtonTwo(QString &);
     void setFoodData(list<QString> *, list<double> *);
+    void initFoodUI();
 
 
 private slots:
@@ -41,7 +43,6 @@ signals:
 private:
     void setFoodNameLabel(const QString &, int count);
     void appendFoodLabel(const double &, int count);
-    void initFoodUI();
     Ui::tripPage *ui;
     QLabel * cityTitle;
     QLabel ** foodNameLabels;

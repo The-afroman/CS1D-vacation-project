@@ -154,8 +154,9 @@ QString findFirstCity()
 
 void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName){
     QSqlQuery query;
-    query.prepare("SELECT * FROM citydata WHERE city= ?");
-    query.addBindValue(cityName);
+    QString city = cityName;
+    query.prepare("SELECT * FROM foods WHERE city= ?");
+    query.addBindValue(city);
     query.exec();
     int idFood = query.record().indexOf("food");
     int idPrice = query.record().indexOf("price");
