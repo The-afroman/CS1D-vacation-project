@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         admin.cpp \
+        customtrippage.cpp \
         database.cpp \
         finalpage.cpp \
         login.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
 HEADERS += \
         admin.h \
         city.h \
+        customtrippage.h \
         database.h \
         finalpage.h \
         login.h \
@@ -49,6 +51,7 @@ HEADERS += \
 FORMS += \
         admin.ui \
         finalpage.ui \
+        customtrippage.ui \
         login.ui \
         mainwindow.ui \
         removecity.ui \

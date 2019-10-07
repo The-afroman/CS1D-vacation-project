@@ -224,7 +224,7 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
 {
     QSqlQuery query;
     QString start;
-    unsigned long long size = 0;
+    unsigned long size = 0;
     bool startFound = false;
     if(orderedCities->size() == 0)
     {
@@ -232,7 +232,10 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
         while(query.next() && !startFound)
         {
             if(!checkCity(query.value(0).toString(), includedCities))
+            {
                 startFound = true;
+                start = query.value(0).toString();
+            }
         }
         orderedCities->push_back(start);
     }
@@ -243,7 +246,7 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
 
     query.prepare("SELECT * FROM citydata WHERE start= ? ORDER by distance ASC");
 
-    start = orderedCities->back();
+    //start = orderedCities->back();
     query.addBindValue(start);
     query.exec();
     //int idStart = query.record().indexOf("start");
@@ -266,6 +269,6 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
     if(orderedCities->size() < size)
     {
         query.finish();
-        findRouteFastest(orderedCities, static_cast<long unsigned int>(includedCities->size()), start);
+        findRouteFastestCustom(orderedCities, includedCities);
     }
 }
