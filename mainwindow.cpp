@@ -140,6 +140,7 @@ void MainWindow::on_Trip1_clicked()
             pages[count]->setTextButtonOne(temp);
             temp = "FINISH TRIP";
             pages[count]->setTextButtonTwo(temp);
+            QObject::connect(pages[count], SIGNAL(finishTrip()), this, SLOT(tripFinish()));
         }
         else{
             temp = "PREVIOUS CITY";
@@ -186,9 +187,15 @@ void MainWindow::nextPage(){
         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
        // qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
+
     else{
          qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
+}
+
+void MainWindow::tripFinish(){
+    finalPage = new finalpage;
+    finalPage->setPages(pages);
 }
 
 

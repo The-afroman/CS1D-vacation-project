@@ -28,6 +28,7 @@ public:
     void setTextButtonTwo(QString &);
     void setFoodData(list<QString> *, list<double> *);
     void initFoodUI();
+    QString getTextButtonTwo()const;
 
 
 private slots:
@@ -39,6 +40,7 @@ signals:
 
     void changePageNext();
     void changePagePrev();
+    void finishTrip();
 
 private:
     void setFoodNameLabel(const QString &, int count);

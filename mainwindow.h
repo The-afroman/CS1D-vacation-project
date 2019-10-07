@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include "trippage.h"
+#include "finalpage.h"
 
 
 namespace Ui {
@@ -22,6 +23,7 @@ public slots:
 
     void pagePrevious();
     void nextPage();
+    void tripFinish();
 
 private slots:
 
@@ -32,6 +34,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     tripPage **pages;
+    finalpage *finalPage;
 
 };
 

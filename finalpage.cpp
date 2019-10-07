@@ -20,10 +20,12 @@ finalpage::~finalpage()
     delete ui;
 }
 
+void finalpage::setPages(tripPage ** data){
+    pages = data;
+}
 void finalpage::on_finish_clicked()
 {
-    mainWindow = new MainWindow(this);
-    mainWindow->show();
+
 }
 
 

@@ -2,7 +2,6 @@
 #define FINALPAGE_H
 
 #include <QDialog>
-#include "mainwindow.h"
 #include "database.h"
 #include "trippage.h"
 
@@ -17,13 +16,14 @@ class finalpage : public QDialog
 public:
     explicit finalpage(QWidget *parent = nullptr);
     ~finalpage();
+    void setPages(tripPage **);
 
 private slots:
     void on_finish_clicked();
 
 private:
     Ui::finalpage *ui;
-    MainWindow *mainWindow;
+    tripPage ** pages;
 };
 
 #endif // FINALPAGE_H
