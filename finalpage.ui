@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>finalpage</class>
+ <widget class="QDialog" name="finalpage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>531</width>
+    <height>458</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:white;</string>
+  </property>
+  <widget class="QPushButton" name="finishButton">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>340</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:green;
+font-size: 20px;
+font: bold italic &quot;Times New Roman&quot;;
+background-color: black;</string>
+   </property>
+   <property name="text">
+    <string>Finish</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>20</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:green;
+font-size:25px;
+font: bold italic &quot;Times New Roman&quot;;</string>
+   </property>
+   <property name="text">
+    <string>End of Trip</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>70</y>
+     <width>171</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="costPerCityLabel">
+      <property name="styleSheet">
+       <string notr="true">color:green;
+font-size: 15px;
+font: bold italic &quot;Times New Roman&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Cost Per City:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="totalCostLabel">
+      <property name="styleSheet">
+       <string notr="true">color:green;
+font-size: 15px;
+font: bold italic &quot;Times New Roman&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Total Cost:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="totalCostOutputLabel">
+      <property name="styleSheet">
+       <string notr="true">border-color: red;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_pic">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>label_pic</zorder>
+  <zorder>finishButton</zorder>
+  <zorder>titleLabel</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
