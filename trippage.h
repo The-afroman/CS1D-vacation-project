@@ -26,6 +26,7 @@ public:
     QString getTitle()const;
     void setTextButtonOne(QString &);
     void setTextButtonTwo(QString &);
+    QString getTextButtonTwo()const;
     void setFoodData(list<QString> *, list<double> *);
     void initFoodUI();
 
@@ -39,6 +40,7 @@ signals:
 
     void changePageNext();
     void changePagePrev();
+    void finishTrip();
 
 private:
     void setFoodNameLabel(const QString &, int count);
@@ -49,6 +51,10 @@ private:
     QSpinBox ** foodQtyBox;
     list<QString> *foodNames;
     list<double> *foodPrices;
+    double total;
+    list<QString> *foodReceiptNames;
+    list<double> *foodReceiptPrices;
+    list<int> *foodReceiptQtys;
 
 };
 
