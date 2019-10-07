@@ -88,6 +88,8 @@ void tripPage::on_pushButton_clicked()
 void tripPage::on_pushButton_2_clicked()
 {
     emit changePageNext();
+
+
 }
 
 void tripPage::setFoodNameLabel(const QString & text, int count){
