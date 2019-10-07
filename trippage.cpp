@@ -97,7 +97,7 @@ void tripPage::setFoodNameLabel(const QString & text, int count){
 }
 
 void tripPage::appendFoodLabel(const double & number, int count){
-    foodNameLabels[count]->setText(foodNameLabels[count]->text() + QString::fromStdString("\nPrice: $" + to_string(number).substr(0, 4) + "\nQuantity to buy:"));
+    foodNameLabels[count]->setText(foodNameLabels[count]->text() + QString::fromStdString("\nPrice: $" + to_string(number).substr(0, 4)));
 }
 
 void tripPage::setTitle(QString & title){
@@ -107,10 +107,6 @@ void tripPage::setTitle(QString & title){
 }
 QString tripPage::getTitle()const{
     return cityTitle->text();
-}
-
-QString tripPage::getTextButtonTwo()const{
-    return ui->pushButton_2->text();
 }
 
 void tripPage::setFoodData(list<QString> *list1, list<double> *list2){

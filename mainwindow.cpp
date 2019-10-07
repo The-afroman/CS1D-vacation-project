@@ -134,8 +134,6 @@ void MainWindow::on_Trip1_clicked()
         if(count == 0){
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
-            temp ="NEXT CITY";
-            pages[count]->setTextButtonTwo(temp);
         }
         else if(count == listSize-1){
             temp = "PREVIOUS CITY";
@@ -184,25 +182,12 @@ void MainWindow::pagePrevious(){
 }
 
 void MainWindow::nextPage(){
-
-    QString temp = pages[ui->stackedWidget->currentIndex()]->getTextButtonTwo();
-
-    if(temp.compare("FINISH TRIP") == 0)
-    {
-         //write code to kersplato's final page ui;
-        qDebug() << "Finishing Trip. " << endl;
-
+    if(ui->stackedWidget->count() > 1 && ui->stackedWidget->currentIndex() < ui->stackedWidget->count()){
+        ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+       // qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
     else{
-        if(ui->stackedWidget->count() > 1 && ui->stackedWidget->currentIndex() < ui->stackedWidget->count())
-        {
-            ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-           // qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
-        }
-        else
-        {
-             qDebug() << "Current Page is: " << ui->stackedWidget->count() << endl;
-        }
+         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
 }
 
