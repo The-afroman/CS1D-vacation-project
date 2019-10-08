@@ -25,30 +25,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        addfood.cpp \
         admin.cpp \
         database.cpp \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
+        removefood.cpp \
         shortesttripwindow.cpp \
         trippage.cpp \
         removecity.cpp
 
 HEADERS += \
+        addfood.h \
         admin.h \
         city.h \
         database.h \
         login.h \
         mainwindow.h \
+        removefood.h \
         shortesttripwindow.h \
         trippage.h \
         removecity.h
 
 FORMS += \
+        addfood.ui \
         admin.ui \
         login.ui \
         mainwindow.ui \
         removecity.ui \
+        removefood.ui \
         shortesttripwindow.ui
 
 # Default rules for deployment.

@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     }
     QString path = qApp->applicationDirPath();
-    DbManager database(path + "/cities.db");
+    DbManager database("C:/cities.db");
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
     //loadCityData(database);
