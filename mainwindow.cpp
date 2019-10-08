@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Trip3->setStyleSheet(
     "   QPushButton#Trip3{"
     "     margin-left: 50px; margin-right: 50px;"
-    "     background-colorQSql>: rgb(146, 189, 108);"
+    "     background-color: rgb(146, 189, 108);"
     "     border-style: solid;"
     "     border-width: 2px;"
     "     border-color: beige;"
