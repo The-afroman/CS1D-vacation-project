@@ -197,6 +197,7 @@ void MainWindow::on_Trip2_clicked()
             pages[count]->setTextButtonOne(temp);
             temp = "FINISH TRIP";
             pages[count]->setTextButtonTwo(temp);
+            QObject::connect(pages[count], SIGNAL(finishTrip()), this, SLOT(tripFinish()));
         }
         else{
             temp = "PREVIOUS CITY";
@@ -259,6 +260,7 @@ void MainWindow::planner2(std::list<QString> * initCities)
             pages[count]->setTextButtonOne(temp);
             temp = "FINISH TRIP";
             pages[count]->setTextButtonTwo(temp);
+            QObject::connect(pages[count], SIGNAL(finishTrip()), this, SLOT(tripFinish()));
         }
         else{
             temp = "PREVIOUS CITY";
