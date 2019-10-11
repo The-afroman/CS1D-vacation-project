@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     " }"
     " QPushButton#Trip1:hover {"
     "     background-color: rgb(224, 255, 0);"
+    "     border-color:black;"
     " }"
 
     "QPushButton#Trip1:hover:pressed"
@@ -51,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     " }"
     " QPushButton#Trip2:hover {"
     "     background-color: rgb(224, 255, 0);"
+    "     border-color:black;"
     " }"
 
     "QPushButton#Trip2:hover:pressed"
@@ -72,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
     " }"
     " QPushButton#Trip3:hover {"
     "     background-color: rgb(224, 255, 0);"
+    "     border-color:black;"
     " }"
 
     "QPushButton#Trip3:hover:pressed"
@@ -285,10 +288,10 @@ void MainWindow::planner2(std::list<QString> * initCities)
 void MainWindow::pagePrevious(){
     if(ui->stackedWidget->count() >= 2 && ui->stackedWidget->currentIndex() != 0){
          ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() -1);
-         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+         //qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
     else{
-         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+         //qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
 }
 
@@ -299,7 +302,7 @@ void MainWindow::nextPage(){
     }
 
     else{
-         qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
+        // qDebug() << "Current Page is: " << ui->stackedWidget->currentIndex() << endl;
     }
 
 }

@@ -36,6 +36,7 @@
      }
      QPushButton:hover {
          background-color: rgb(224, 255, 0);
+		  border-color:black;
      }
 
     QPushButton:hover:pressed
@@ -64,6 +65,7 @@
      }
      QPushButton:hover {
          background-color: rgb(224, 255, 0);
+		 border-color:black;
      }
 
     QPushButton:hover:pressed
@@ -85,11 +87,11 @@
          <item>
           <widget class="QWidget" name="LabelWidget" native="true">
            <property name="styleSheet">
-            <string notr="true">
+            <string notr="true">background-color: rgb(226, 255, 219);
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
-    border-color: beige;
+    border-color: black;
     font: bold 14px;
     min-width: 10em;
     padding: 6px;</string>

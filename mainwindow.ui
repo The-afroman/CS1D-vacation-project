@@ -27,7 +27,8 @@
     </sizepolicy>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: grey;
+    <string notr="true">background-color: rgb(221, 221, 221)
+
 
 
 </string>
@@ -36,7 +37,7 @@
     <item row="1" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(64, 65, 66)</string>
+       <string notr="true">background-color: rgb(250, 255, 224)</string>
       </property>
       <property name="currentIndex">
        <number>0</number>

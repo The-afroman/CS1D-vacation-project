@@ -48,6 +48,14 @@ void tripPage::initFoodUI(){
         foodQtyBox[i]->setRange(0,10000);
         foodQtyBox[i]->setGeometry(25,25,0,0);
         foodQtyBox[i]->show();
+        foodQtyBox[i]->setStyleSheet(
+                                     "     margin-left: 50px; margin-right: 50px;"
+                                     "     border-style: solid;"
+                                     "     border-width: 2px;"
+                                     "     border-color: black;"
+                                     "     font: bold 14px;"
+                                     );
+
         ui->vboxLabel->addWidget(foodQtyBox[i]);
         //qDebug() << "added QtyBox" << endl;
     }
