@@ -87,14 +87,15 @@
          <item>
           <widget class="QWidget" name="LabelWidget" native="true">
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(226, 255, 219);
+            <string notr="true">#LabelWidget{	background-color: rgb(226, 255, 219);
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
     border-color: black;
     font: bold 14px;
     min-width: 10em;
-    padding: 6px;</string>
+    padding: 6px;
+}</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>

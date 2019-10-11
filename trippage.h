@@ -5,8 +5,10 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QSpinBox>
+#include <QLayout>
 #include <iostream>
 #include <QDebug>
+#include <QSlider>
 using namespace std;
 
 
@@ -36,10 +38,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_valueChanged(int);
+
 signals:
 
     void changePageNext();
     void changePagePrev();
+    void valueChanged(int);
     void finishTrip();
 
 private:
@@ -51,6 +56,8 @@ private:
     QSpinBox ** foodQtyBox;
     list<QString> *foodNames;
     list<double> *foodPrices;
+    QHBoxLayout * hbox;
+    QWidget * tempW;
 
 };
 

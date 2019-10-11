@@ -37,15 +37,17 @@ void tripPage::initFoodUI(){
     QFont serifFont("Times", 12, QFont::Bold);
     //qDebug() << "size of food list is apperantly: " <<  size << endl;
     for(int i = 0; i < size; i++){
+        hbox = new QHBoxLayout;
+        tempW = new QWidget;
         foodNameLabels[i] = new QLabel();
         foodNameLabels[i]->setGeometry(75,50,0,0);
         foodNameLabels[i]->setFont(serifFont);
         foodNameLabels[i]->show();
-        ui->vboxLabel->addWidget(foodNameLabels[i]);
+
         //qDebug() << "added Label" << endl;
 
-        foodQtyBox[i] = new QSpinBox();
-        foodQtyBox[i]->setRange(0,10000);
+        foodQtyBox[i] = new QSpinBox;
+        foodQtyBox[i]->setRange(0, 100);
         foodQtyBox[i]->setGeometry(25,25,0,0);
         foodQtyBox[i]->show();
         foodQtyBox[i]->setStyleSheet(
@@ -55,8 +57,14 @@ void tripPage::initFoodUI(){
                                      "     border-color: black;"
                                      "     font: bold 14px;"
                                      );
+        hbox->addWidget(foodNameLabels[i]);
+        hbox->addWidget(foodQtyBox[i]);
+        tempW->setLayout(hbox);
+        tempW->setStyleSheet("background-color: rgb(226, 255, 219);");
 
-        ui->vboxLabel->addWidget(foodQtyBox[i]);
+        connect(foodQtyBox[i], QOverload<const int>::of(&QSpinBox::valueChanged), this, &tripPage::on_valueChanged);
+
+        ui->vboxLabel->addWidget(tempW);
         //qDebug() << "added QtyBox" << endl;
     }
     for(it = foodNames->begin(); it != foodNames->end(); it++){
@@ -74,6 +82,10 @@ void tripPage::initFoodUI(){
     //cout << "Finished adding food Labels." << endl;
 
 
+}
+
+void tripPage::on_valueChanged(int){
+    qDebug() << "value changed" << endl;
 }
 
 void tripPage::setTextButtonOne(QString & text){

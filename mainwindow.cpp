@@ -273,6 +273,7 @@ void MainWindow::planner2(std::list<QString> * initCities)
         }
         QObject::connect(pages[count], SIGNAL(changePagePrev()), this, SLOT(pagePrevious()));
         QObject::connect(pages[count], SIGNAL(changePageNext()), this, SLOT(nextPage()));
+        //QObject::connect(pages[count], SIGNAL(valueChanged(int)), this, SLOT(updatePrices(int)));
         ui->stackedWidget->addWidget(pages[count]);
         count++;
         qDebug() << "adding page for " << *it << endl;
@@ -310,6 +311,10 @@ void MainWindow::nextPage(){
 void MainWindow::tripFinish(){
     finalPage = new finalpage;
     finalPage->setPages(pages);
+}
+
+void MainWindow::updatePrices(int index){
+
 }
 
 
