@@ -31,6 +31,9 @@ public:
     void setFoodData(list<QString> *, list<double> *);
     void initFoodUI();
     QString getTextButtonTwo()const;
+    int getFoodListSize()const;
+    void setFoodListSize(int);
+    double getTotal();
 
 
 private slots:
@@ -38,13 +41,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_valueChanged(int);
+    void on_valueChanged();
 
 signals:
 
     void changePageNext();
     void changePagePrev();
-    void valueChanged(int);
+    void valueChanged();
     void finishTrip();
 
 private:
@@ -58,6 +61,10 @@ private:
     list<double> *foodPrices;
     QHBoxLayout * hbox;
     QWidget * tempW;
+    QLabel * priceLabel;
+    QLabel * distanceSoFar;
+    int sizeOfFoodLists;
+    double total;
 
 };
 

@@ -13,11 +13,17 @@ tripPage::tripPage(QWidget *parent) :
     cityTitle = new QLabel;
     cityTitle->setMinimumSize(200,100);
     cityTitle->show();
+    priceLabel = new QLabel("Price Spent: ");
+    priceLabel->setMinimumSize(200,100);
+    priceLabel->show();
+    distanceSoFar = new QLabel("Distance So Far: ");
+    distanceSoFar->setMinimumSize(200,100);
+    distanceSoFar->show();
     ui->titleVBox->setAlignment(cityTitle, Qt::AlignHCenter);
     ui->titleVBox->setAlignment(Qt::AlignTop);
-
-
     ui->titleVBox->addWidget(cityTitle);
+    ui->titleVBox->addWidget(priceLabel);
+    ui->titleVBox->addWidget(distanceSoFar);
 }
 
 
@@ -27,16 +33,17 @@ tripPage::~tripPage()
 }
 
 void tripPage::initFoodUI(){
-    int size = static_cast<int>(foodNames->size());
-    foodNameLabels = new QLabel*[size];
-    foodQtyBox = new QSpinBox*[size];
+    sizeOfFoodLists = (foodPrices->size());
+    cout << "size of list is :" << sizeOfFoodLists << endl;
+    foodNameLabels = new QLabel*[sizeOfFoodLists];
+    foodQtyBox = new QSpinBox*[sizeOfFoodLists];
     std::list<QString>::iterator it;
     std::list<double>::iterator dit;
     int count = 0;
     QLabel temp;
     QFont serifFont("Times", 12, QFont::Bold);
     //qDebug() << "size of food list is apperantly: " <<  size << endl;
-    for(int i = 0; i < size; i++){
+    for(int i = 0; i < sizeOfFoodLists; i++){
         hbox = new QHBoxLayout;
         tempW = new QWidget;
         foodNameLabels[i] = new QLabel();
@@ -84,8 +91,36 @@ void tripPage::initFoodUI(){
 
 }
 
-void tripPage::on_valueChanged(int){
-    qDebug() << "value changed" << endl;
+void tripPage::on_valueChanged(){
+    int i=0;
+    double total = 0;
+    std::list<double>::iterator it;
+
+    //THIS METHOD IS NOT WORKING THE FOOD PRICES ARE BEING RETURNED AS ZERO?
+    //THE ABOVE ITERATOR WORKS AND APPENDS THE FOOD LABELS WITH CORRECT PRICES
+    //TRY TO ITERATE THROUGH THE PRICES INSTEAD AND THEN CHECK TO SEE IF THE FOODQTYBOX
+    //HAS A VALUE IN IT. 10/12/2019 @8:19
+    //cout << sizeOfFoodLists << endl;
+    string temp="";
+    double tempD = 0;
+    for(i=0; i < sizeOfFoodLists; i++){
+        if(foodQtyBox[i]->value() >   0){
+            temp = foodNameLabels[i]->text().toStdString();
+            temp = temp.substr(temp.find("$")+1);
+            tempD = stod(temp);
+            total += tempD * foodQtyBox[i]->value();
+        }
+    }
+
+    string originalText = priceLabel->text().toStdString();
+    QString newText = QString::fromStdString(originalText.substr(0, originalText.find(":")+1));
+    string x = std::to_string(total);
+    priceLabel->setText(newText + QString::fromStdString("$" + x));
+}
+
+double tripPage::getTotal(){
+
+    return total;
 }
 
 void tripPage::setTextButtonOne(QString & text){
@@ -150,4 +185,12 @@ void tripPage::setFoodData(list<QString> *list1, list<double> *list2){
     }
     */
     initFoodUI();
+}
+
+int tripPage::getFoodListSize()const{
+    return sizeOfFoodLists;
+}
+
+void tripPage::setFoodListSize(int value){
+    sizeOfFoodLists = value;
 }
