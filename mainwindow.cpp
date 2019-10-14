@@ -247,7 +247,7 @@ void MainWindow::planner2(std::list<QString> * initCities)
     pages = new tripPage*[citiesList->size()];
     int count = 0;
 
-    int listSize = static_cast<int>(citiesList->size());
+    listSize = static_cast<int>(citiesList->size());
     for(it = citiesList->begin();it != citiesList->end();it++)
     {
         getFoodData(foodNames, foodPrices, *it);
@@ -310,11 +310,18 @@ void MainWindow::nextPage(){
 
 void MainWindow::tripFinish(){
     finalPage = new finalpage;
-    finalPage->setPages(pages);
+    QList<QTreeWidgetItem *> items;
+    QTreeWidgetItem * item;
+    for(int i =0; i < listSize; i++){
+    item = new QTreeWidgetItem();
+    item->setText(0,pages[i]->getTitle());
+    items.push_back(item);
+    cout << "? " << endl;
+    }
+    finalPage->addTreeItems(items);
+    ui->stackedWidget->addWidget(finalPage);
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() +1);
 }
 
-void MainWindow::updatePrices(int index){
-
-}
 
 

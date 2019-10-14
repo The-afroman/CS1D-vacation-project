@@ -5,6 +5,7 @@
 #include <QListWidgetItem>
 #include "trippage.h"
 #include "finalpage.h"
+#include <QTreeWidgetItem>
 
 
 namespace Ui {
@@ -24,7 +25,6 @@ public slots:
     void pagePrevious();
     void nextPage();
     void tripFinish();
-    void updatePrices(int);
     void planner2(std::list<QString> * initCities);
 
 private slots:
@@ -37,6 +37,7 @@ private:
     Ui::MainWindow *ui;
     tripPage **pages;
     finalpage *finalPage;
+    int listSize;
 
 };
 

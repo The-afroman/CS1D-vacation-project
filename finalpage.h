@@ -1,29 +1,28 @@
 #ifndef FINALPAGE_H
 #define FINALPAGE_H
 
-#include <QDialog>
-#include "database.h"
+#include <QWidget>
 #include "trippage.h"
+#include <QTreeWidgetItem>
 
 namespace Ui {
 class finalpage;
 }
 
-class finalpage : public QDialog
+class finalpage : public QWidget
 {
     Q_OBJECT
 
 public:
     explicit finalpage(QWidget *parent = nullptr);
+    void addTreeItems(const QList<QTreeWidgetItem *> item);
     ~finalpage();
-    void setPages(tripPage **);
-
-private slots:
-    void on_finish_clicked();
 
 private:
+    void initUI();
     Ui::finalpage *ui;
-    tripPage ** pages;
+    vector<double> totalsList;
+    int listSize;
 };
 
 #endif // FINALPAGE_H
