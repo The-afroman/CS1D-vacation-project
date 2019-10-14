@@ -63,10 +63,10 @@
              <widget class="QLabel" name="distanceLabel">
               <property name="font">
                <font>
-                <family>Fixedsys</family>
-                <pointsize>11</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <family>Arial</family>
+                <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -78,10 +78,10 @@
              <widget class="QLabel" name="totalLabel">
               <property name="font">
                <font>
-                <family>Fixedsys</family>
-                <pointsize>11</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
+                <family>Arial</family>
+                <pointsize>12</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">

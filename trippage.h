@@ -32,8 +32,12 @@ public:
     void initFoodUI();
     QString getTextButtonTwo()const;
     int getFoodListSize()const;
-    void setFoodListSize(int);
-    double getTotal();
+    void setFoodListSize(unsigned long long);
+    double getTotal()const;
+    QSpinBox ** getFoodQtyBox() const;
+    list<QString> * getFoodNames() const;
+    list<double> * getFoodPrices() const;
+    QLabel ** getFoodLabels()const;
 
 
 private slots:
@@ -63,7 +67,7 @@ private:
     QWidget * tempW;
     QLabel * priceLabel;
     QLabel * distanceSoFar;
-    int sizeOfFoodLists;
+    unsigned long long sizeOfFoodLists;
     double total;
 
 };

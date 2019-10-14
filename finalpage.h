@@ -15,7 +15,7 @@ class finalpage : public QWidget
 
 public:
     explicit finalpage(QWidget *parent = nullptr);
-    void addTreeItems(const QList<QTreeWidgetItem *> item);
+    void addTreeItem(const tripPage & page);
     ~finalpage();
 
 private:

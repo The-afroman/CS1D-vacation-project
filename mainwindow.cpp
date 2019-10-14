@@ -128,7 +128,7 @@ void MainWindow::on_Trip1_clicked()
     pages = new tripPage*[cities->size()];
     int count = 0;
 
-    int listSize = static_cast<int>(cities->size());
+    listSize = (cities->size());
     for(it = cities->begin();it != cities->end();it++)
     {
         getFoodData(foodNames, foodPrices, *it);
@@ -139,7 +139,7 @@ void MainWindow::on_Trip1_clicked()
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
         }
-        else if(count == listSize-1){
+        else if(count == static_cast<int>(listSize)-1){
             temp = "PREVIOUS CITY";
             pages[count]->setTextButtonOne(temp);
             temp = "FINISH TRIP";
@@ -184,7 +184,7 @@ void MainWindow::on_Trip2_clicked()
     pages = new tripPage*[cities->size()];
     int count = 0;
 
-    int listSize = static_cast<int>(cities->size());
+    listSize = (cities->size());
     for(it = cities->begin();it != cities->end();it++)
     {
         getFoodData(foodNames, foodPrices, *it);
@@ -195,7 +195,7 @@ void MainWindow::on_Trip2_clicked()
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
         }
-        else if(count == listSize-1){
+        else if(count == static_cast<int>(listSize)-1){
             temp = "PREVIOUS CITY";
             pages[count]->setTextButtonOne(temp);
             temp = "FINISH TRIP";
@@ -247,7 +247,7 @@ void MainWindow::planner2(std::list<QString> * initCities)
     pages = new tripPage*[citiesList->size()];
     int count = 0;
 
-    listSize = static_cast<int>(citiesList->size());
+    listSize = (citiesList->size());
     for(it = citiesList->begin();it != citiesList->end();it++)
     {
         getFoodData(foodNames, foodPrices, *it);
@@ -258,7 +258,7 @@ void MainWindow::planner2(std::list<QString> * initCities)
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
         }
-        else if(count == listSize-1){
+        else if(count == static_cast<int>(listSize)-1){
             temp = "PREVIOUS CITY";
             pages[count]->setTextButtonOne(temp);
             temp = "FINISH TRIP";
@@ -309,16 +309,17 @@ void MainWindow::nextPage(){
 }
 
 void MainWindow::tripFinish(){
+
     finalPage = new finalpage;
-    QList<QTreeWidgetItem *> items;
-    QTreeWidgetItem * item;
-    for(int i =0; i < listSize; i++){
-    item = new QTreeWidgetItem();
-    item->setText(0,pages[i]->getTitle());
-    items.push_back(item);
-    cout << "? " << endl;
+
+    qDebug() << listSize << endl;
+
+    for(int i =0; i < static_cast<int>(listSize); i++){
+
+        finalPage->addTreeItem(*pages[i]);
+
     }
-    finalPage->addTreeItems(items);
+
     ui->stackedWidget->addWidget(finalPage);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() +1);
 }

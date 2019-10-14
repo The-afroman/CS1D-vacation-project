@@ -37,7 +37,7 @@ private:
     Ui::MainWindow *ui;
     tripPage **pages;
     finalpage *finalPage;
-    int listSize;
+    unsigned long long listSize;
 
 };
 

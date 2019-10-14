@@ -43,7 +43,7 @@ void tripPage::initFoodUI(){
     QLabel temp;
     QFont serifFont("Times", 12, QFont::Bold);
     //qDebug() << "size of food list is apperantly: " <<  size << endl;
-    for(int i = 0; i < sizeOfFoodLists; i++){
+    for(int i = 0; i < static_cast<int>(sizeOfFoodLists); i++){
         hbox = new QHBoxLayout;
         tempW = new QWidget;
         foodNameLabels[i] = new QLabel();
@@ -103,7 +103,7 @@ void tripPage::on_valueChanged(){
     //cout << sizeOfFoodLists << endl;
     string temp="";
     double tempD = 0;
-    for(i=0; i < sizeOfFoodLists; i++){
+    for(i=0; i < static_cast<int>(sizeOfFoodLists); i++){
         if(foodQtyBox[i]->value() >   0){
             temp = foodNameLabels[i]->text().toStdString();
             temp = temp.substr(temp.find("$")+1);
@@ -118,7 +118,7 @@ void tripPage::on_valueChanged(){
     priceLabel->setText(newText + QString::fromStdString("$" + x));
 }
 
-double tripPage::getTotal(){
+double tripPage::getTotal()const{
 
     return total;
 }
@@ -174,6 +174,7 @@ void tripPage::setFoodData(list<QString> *list1, list<double> *list2){
 
     foodNames = list1;
     foodPrices = list2;
+    setFoodListSize(foodNames->size());
     /*)
     list<QString>::iterator it;
     for(it = list1->begin(); it != list1->end(); it++){
@@ -188,9 +189,23 @@ void tripPage::setFoodData(list<QString> *list1, list<double> *list2){
 }
 
 int tripPage::getFoodListSize()const{
-    return sizeOfFoodLists;
+    return static_cast<int>(sizeOfFoodLists);
 }
 
-void tripPage::setFoodListSize(int value){
+void tripPage::setFoodListSize(unsigned long long value){
     sizeOfFoodLists = value;
+}
+
+QLabel ** tripPage::getFoodLabels()const{
+    return foodNameLabels;
+}
+
+QSpinBox ** tripPage::getFoodQtyBox()const {
+    return foodQtyBox;
+}
+list<QString> * tripPage::getFoodNames()const {
+    return foodNames;
+}
+list<double> * tripPage::getFoodPrices()const{
+    return foodPrices;
 }
