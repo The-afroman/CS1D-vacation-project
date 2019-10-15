@@ -93,7 +93,7 @@ void tripPage::initFoodUI(){
 
 void tripPage::on_valueChanged(){
     int i=0;
-    double total = 0;
+    total = 0;
     std::list<double>::iterator it;
 
     //THIS METHOD IS NOT WORKING THE FOOD PRICES ARE BEING RETURNED AS ZERO?

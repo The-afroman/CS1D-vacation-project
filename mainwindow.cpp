@@ -313,12 +313,15 @@ void MainWindow::tripFinish(){
     finalPage = new finalpage;
 
     qDebug() << listSize << endl;
+    double netTotal = 0;
 
     for(int i =0; i < static_cast<int>(listSize); i++){
 
         finalPage->addTreeItem(*pages[i]);
+        netTotal += pages[i]->getTotal();
 
     }
+    finalPage->setNetTotal(netTotal);
 
     ui->stackedWidget->addWidget(finalPage);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() +1);

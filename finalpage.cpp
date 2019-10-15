@@ -51,6 +51,11 @@ void finalpage::addTreeItem(const tripPage & page){
 
 }
 
+void finalpage::setNetTotal(double value){
+    net = value;
+    ui->totalLabel->setText(ui->totalLabel->text() + QString::fromStdString(std::to_string(net)));
+}
+
 finalpage::~finalpage()
 {
     delete ui;

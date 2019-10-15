@@ -17,12 +17,14 @@ public:
     explicit finalpage(QWidget *parent = nullptr);
     void addTreeItem(const tripPage & page);
     ~finalpage();
+    void setNetTotal(double value);
 
 private:
     void initUI();
     Ui::finalpage *ui;
     vector<double> totalsList;
     int listSize;
+    double net;
 };
 
 #endif // FINALPAGE_H
