@@ -25,6 +25,9 @@
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0">
        <widget class="QTreeWidget" name="tripTree">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
         <column>
          <property name="text">
           <string notr="true">1</string>
@@ -69,6 +72,9 @@
                 <bold>false</bold>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 0, 0);</string>
+              </property>
               <property name="text">
                <string>Total Distance Traveled:</string>
               </property>
@@ -84,6 +90,9 @@
                 <bold>false</bold>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(0, 0, 0);</string>
+              </property>
               <property name="text">
                <string>Total Spent: $</string>
               </property>
@@ -94,6 +103,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);</string>
+           </property>
            <property name="text">
             <string>Back To Main Menu</string>
            </property>
@@ -125,6 +137,9 @@
              <pointsize>14</pointsize>
              <underline>true</underline>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);</string>
            </property>
            <property name="text">
             <string>Summary Of Your Trip:</string>

@@ -18,6 +18,9 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
        <property name="text">
         <string>Cities</string>
        </property>
@@ -28,6 +31,9 @@
      </item>
      <item>
       <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
        <property name="text">
         <string>Planned Cities</string>
        </property>
@@ -48,6 +54,7 @@
          border-width: 2px;
          border-color: beige;
          font: bold 14px;
+		  color: rgb(0, 0, 0);
      }
   QPushButton:pressed {
          background-color: rgb(224, 0, 0);     
@@ -76,6 +83,7 @@
          border-width: 2px;
          border-color: beige;
          font: bold 14px;
+		  color: rgb(0, 0, 0);
      }
   QPushButton:pressed {
          background-color: rgb(224, 0, 0);     
@@ -104,6 +112,7 @@
          border-width: 2px;
          border-color: beige;
          font: bold 14px;
+		  color: rgb(0, 0, 0);
      }
   QPushButton:pressed {
          background-color: rgb(224, 0, 0);     
@@ -128,6 +137,9 @@
       <widget class="QPushButton" name="backBtn">
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;go to previous the page&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Back</string>
