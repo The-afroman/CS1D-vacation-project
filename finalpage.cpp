@@ -46,14 +46,16 @@ void finalpage::addTreeItem(const tripPage & page){
 
     QTreeWidgetItem *child = new QTreeWidgetItem();
     child->setText(3, "Subtotal: ");
-    child->setText(4, QString::fromStdString(std::to_string(page.getTotal())));
+    QString pageTotal = QString::number(page.getTotal(),'f', 2);
+    child->setText(4, pageTotal);
     item->addChild(child);
 
 }
 
 void finalpage::setNetTotal(double value){
     net = value;
-    ui->totalLabel->setText(ui->totalLabel->text() + QString::fromStdString(std::to_string(net)));
+    QString netTotal = QString::number(net, 'f', 2);
+    ui->totalLabel->setText(ui->totalLabel->text() + netTotal);
 }
 
 finalpage::~finalpage()

@@ -225,9 +225,10 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
     QSqlQuery query;
     QString start;
     unsigned long size = 0;
-    bool startFound = false;
+    //bool startFound = false;
     if(orderedCities->size() == 0)
-    {
+    {   /*
+        //this finds the first city with the shortest dist.
         query.exec("SELECT start, MIN(distance) From citydata");
         while(query.next() && !startFound)
         {
@@ -237,6 +238,11 @@ void findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStrin
                 start = query.value(0).toString();
             }
         }
+        orderedCities->push_back(start);
+        */
+
+        // will start at the first city in includedCities
+        start = includedCities->front();
         orderedCities->push_back(start);
     }
     else
