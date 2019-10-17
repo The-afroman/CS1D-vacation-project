@@ -107,9 +107,38 @@ MainWindow::~MainWindow()
     for(int i = 0; i< ui->stackedWidget->count(); i++){
         delete pages[i];
     }
+    delete finalPage;
     delete pages;
+    delete planner;
     delete ui;
 
+}
+
+// will reset the stacked widget
+void MainWindow::resetStackW()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+    if(finalPage!=nullptr)
+    {
+        ui->stackedWidget->removeWidget(finalPage);
+        delete finalPage;
+        finalPage = nullptr;
+    }
+    if(planner!=nullptr)
+    {
+        ui->stackedWidget->removeWidget(planner);
+        delete planner;
+        planner = nullptr;
+    }
+    int count = ui->stackedWidget->count()-1;
+    for(int i=0; i < count; i++)
+    {
+        ui->stackedWidget->removeWidget(pages[i]);
+        delete pages[i];
+        qDebug() << "\nnum widgets in SW: " << ui->stackedWidget->count() << endl;
+    }
+    delete pages;
 }
 
 void MainWindow::on_Trip1_clicked()
@@ -172,11 +201,9 @@ void MainWindow::on_Trip2_clicked()
 
     cout << "Planning new trip..." << endl;
 
-    numCities * nCityDialog = new numCities;
     QObject::connect(nCityDialog, SIGNAL(finish(int)), this, SLOT(Trip2(int)));
     //nCityDialog->setAttribute(Qt::WA_DeleteOnClose);
     nCityDialog->show();
-
 }
 
 void MainWindow::Trip2(int nCities)
@@ -229,16 +256,16 @@ void MainWindow::Trip2(int nCities)
 
 void MainWindow::on_Trip3_clicked()
 {
-    customTripPage * planner = new customTripPage;
+    planner = new customTripPage;
     cout << "Planning totally custom trip..." << endl;
     QObject::connect(planner, SIGNAL(changetoPagePrev()), this, SLOT(pagePrevious()));
-    QObject::connect(planner, SIGNAL(finish(std::list<QString> *)), this, SLOT(planner2(std::list<QString> *)));
+    QObject::connect(planner, SIGNAL(finish(std::list<QString> *)), this, SLOT(Trip3(std::list<QString> *)));
     //QObject::connect(planner, SIGNAL(changePageNext()), this, SLOT(nextPage()));
     ui->stackedWidget->addWidget(planner);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
-void MainWindow::planner2(std::list<QString> * initCities)
+void MainWindow::Trip3(std::list<QString> * initCities)
 {
     QString temp;
     std::list<QString> * citiesList = new std::list<QString>;
@@ -316,6 +343,8 @@ void MainWindow::nextPage(){
 void MainWindow::tripFinish(){
 
     finalPage = new finalpage;
+
+    QObject::connect(finalPage, SIGNAL(backToMenu()), this, SLOT(resetStackW()));
 
     qDebug() << listSize << endl;
     double netTotal = 0;

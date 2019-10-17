@@ -62,3 +62,8 @@ finalpage::~finalpage()
 {
     delete ui;
 }
+
+void finalpage::on_pushButton_clicked()
+{
+    emit backToMenu();
+}

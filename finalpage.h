@@ -19,6 +19,12 @@ public:
     ~finalpage();
     void setNetTotal(double value);
 
+signals:
+    void backToMenu();
+
+private slots:
+    void on_pushButton_clicked();
+
 private:
     void initUI();
     Ui::finalpage *ui;

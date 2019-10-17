@@ -5,6 +5,8 @@
 #include <QListWidgetItem>
 #include "trippage.h"
 #include "finalpage.h"
+#include "customtrippage.h"
+#include "numcities.h"
 #include <QTreeWidgetItem>
 
 
@@ -21,12 +23,12 @@ public:
     ~MainWindow();
 
 public slots:
-
+    void resetStackW();
     void pagePrevious();
     void nextPage();
     void tripFinish();
-    void planner2(std::list<QString> * initCities);
     void Trip2(int nCities);
+    void Trip3(std::list<QString> * initCities);
 
 private slots:
 
@@ -35,9 +37,11 @@ private slots:
     void on_Trip3_clicked();
 
 private:
-    Ui::MainWindow *ui;
-    tripPage **pages;
-    finalpage *finalPage;
+    Ui::MainWindow *ui = nullptr;
+    numCities * nCityDialog = new numCities;
+    customTripPage * planner = nullptr;
+    tripPage ** pages = nullptr;
+    finalpage * finalPage = nullptr;
     unsigned long long listSize;
 
 };
