@@ -92,7 +92,7 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <property name="text">
-    <string>Remove Food</string>
+    <string>Change Food Prices</string>
    </property>
   </widget>
  </widget>

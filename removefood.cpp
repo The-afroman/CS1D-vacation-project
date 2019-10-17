@@ -35,10 +35,13 @@ void removefood::on_pushButton_clicked()
 {
     qDebug() << foodname;
     QSqlQuery query;
-    query.prepare("DELETE FROM foods WHERE food= ?");
+    QString price = ui->lineEdit->text();
+    query.prepare("UPDATE foods SET price = :newprice WHERE food = ?");
     query.addBindValue(foodname);
+    query.bindValue(":newprice", price);
     query.exec();
     query.finish();
+
 }
 
 void removefood::on_listWidget_itemClicked(QListWidgetItem *item)
@@ -52,4 +55,18 @@ void removefood::on_pushButton_2_pressed()
     admin *h =  new admin(this);
     this->close();
     h->show();
+}
+
+void removefood::on_pushButton_3_clicked()
+{
+    QSqlQuery query;
+    query.prepare("DELETE from foods WHERE food = ?");
+    query.addBindValue(foodname);
+    query.exec();
+    query.finish();
+}
+
+void removefood::on_plainTextEdit_textChanged()
+{
+
 }
