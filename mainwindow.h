@@ -26,6 +26,7 @@ public slots:
     void nextPage();
     void tripFinish();
     void planner2(std::list<QString> * initCities);
+    void Trip2(int nCities);
 
 private slots:
 

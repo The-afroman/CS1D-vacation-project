@@ -32,7 +32,7 @@ SOURCES += \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
-        numcitiesdialog.cpp \
+        numcities.cpp \
         shortesttripwindow.cpp \
         removecity.cpp \
         trippage.cpp
@@ -45,7 +45,7 @@ HEADERS += \
         finalpage.h \
         login.h \
         mainwindow.h \
-        numcitiesdialog.h \
+        numcities.h \
         shortesttripwindow.h \
         removecity.h \
         trippage.h
@@ -56,7 +56,7 @@ FORMS += \
         customtrippage.ui \
         login.ui \
         mainwindow.ui \
-        numcitiesdialog.ui \
+        numcities.ui \
         removecity.ui \
         shortesttripwindow.ui \
         trippage.ui

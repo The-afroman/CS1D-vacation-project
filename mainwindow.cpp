@@ -6,6 +6,7 @@
 #include "trippage.h"
 #include "shortesttripwindow.h"
 #include "customtrippage.h"
+#include "numcities.h"
 
 using namespace std;
 
@@ -171,15 +172,20 @@ void MainWindow::on_Trip2_clicked()
 
     cout << "Planning new trip..." << endl;
 
-   //ShortestTripWindow shortestTripWindow;
-   //shortestTripWindow.setModal(true);
-   //shortestTripWindow.exec();
+    numCities * nCityDialog = new numCities;
+    QObject::connect(nCityDialog, SIGNAL(finish(int)), this, SLOT(Trip2(int)));
+    //nCityDialog->setAttribute(Qt::WA_DeleteOnClose);
+    nCityDialog->show();
 
+}
+
+void MainWindow::Trip2(int nCities)
+{
     QString temp;
     std::list<QString> * cities = new std::list<QString>;
     std::list<QString> * foodNames = new std::list<QString>;
     std::list<double> *  foodPrices = new std::list<double>;
-    findRouteFastest(cities, 11, "London");
+    findRouteFastest(cities, nCities, "London");
     std::list<QString>::iterator it;
     pages = new tripPage*[cities->size()];
     int count = 0;
@@ -219,7 +225,6 @@ void MainWindow::on_Trip2_clicked()
 
     qDebug() << ui->stackedWidget->count() << " number of pages total." << endl;
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-
 }
 
 void MainWindow::on_Trip3_clicked()
