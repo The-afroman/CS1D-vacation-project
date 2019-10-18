@@ -86,7 +86,6 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     QString path = qApp->applicationDirPath();
     DbManager database(path + "/cities.db");
-   // database.printFoods();
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
     //loadCityData(database);
@@ -108,7 +107,7 @@ MainWindow::~MainWindow()
         delete pages[i];
     }
     delete finalPage;
-    delete pages;
+    delete[] pages;
     delete planner;
     delete ui;
 
@@ -131,6 +130,10 @@ void MainWindow::resetStackW()
         delete planner;
         planner = nullptr;
     }
+    if(nCityDialog!=nullptr)
+    {
+        delete nCityDialog;
+    }
     int count = ui->stackedWidget->count()-1;
     for(int i=0; i < count; i++)
     {
@@ -138,7 +141,7 @@ void MainWindow::resetStackW()
         delete pages[i];
         qDebug() << "\nnum widgets in SW: " << ui->stackedWidget->count() << endl;
     }
-    delete pages;
+    delete[] pages;
 }
 
 void MainWindow::on_Trip1_clicked()
@@ -200,9 +203,9 @@ void MainWindow::on_Trip2_clicked()
     cout << "Planning custom trip starting at london..." << endl;
 
     cout << "Planning new trip..." << endl;
-
-    QObject::connect(nCityDialog, SIGNAL(finish(int)), this, SLOT(Trip2(int)));
     //nCityDialog->setAttribute(Qt::WA_DeleteOnClose);
+    nCityDialog = new numCities;
+    QObject::connect(nCityDialog, SIGNAL(finish(int)), this, SLOT(Trip2(int)));
     nCityDialog->show();
 }
 
@@ -244,6 +247,7 @@ void MainWindow::Trip2(int nCities)
         QObject::connect(pages[count], SIGNAL(changePagePrev()), this, SLOT(pagePrevious()));
         QObject::connect(pages[count], SIGNAL(changePageNext()), this, SLOT(nextPage()));
         ui->stackedWidget->addWidget(pages[count]);
+        qDebug() << ui->stackedWidget->count() << " number of pages total." << endl;
         count++;
         qDebug() << "adding page for " << *it << endl;
         foodNames->clear();

@@ -68,7 +68,7 @@ private:
     QLabel * priceLabel;
     QLabel * distanceSoFar;
     unsigned long long sizeOfFoodLists;
-    double total;
+    double total = 0;
 
 };
 

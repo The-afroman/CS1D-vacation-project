@@ -38,7 +38,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui = nullptr;
-    numCities * nCityDialog = new numCities;
+    numCities * nCityDialog = nullptr;
     customTripPage * planner = nullptr;
     tripPage ** pages = nullptr;
     finalpage * finalPage = nullptr;

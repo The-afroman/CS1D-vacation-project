@@ -34,7 +34,7 @@ tripPage::~tripPage()
 
 void tripPage::initFoodUI(){
     sizeOfFoodLists = (foodPrices->size());
-    cout << "size of list is :" << sizeOfFoodLists << endl;
+    qDebug() << "size of list is :" << sizeOfFoodLists << endl;
     foodNameLabels = new QLabel*[sizeOfFoodLists];
     foodQtyBox = new QSpinBox*[sizeOfFoodLists];
     std::list<QString>::iterator it;
