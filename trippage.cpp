@@ -13,7 +13,7 @@ tripPage::tripPage(QWidget *parent) :
     cityTitle = new QLabel;
     cityTitle->setMinimumSize(200,100);
     cityTitle->show();
-    priceLabel = new QLabel("Price Spent: ");
+    priceLabel = new QLabel("Amount Spent: ");
     priceLabel->setMinimumSize(200,100);
     priceLabel->show();
     //distanceSoFar = new QLabel("Distance So Far: ");
@@ -115,7 +115,7 @@ void tripPage::on_valueChanged(){
     string originalText = priceLabel->text().toStdString();
     QString newText = QString::fromStdString(originalText.substr(0, originalText.find(":")+1));
     QString x = QString::number(total, 'f', 2);
-    priceLabel->setText(newText + "$" + x);
+    priceLabel->setText(newText + " $" + x);
 }
 
 double tripPage::getTotal()const{
