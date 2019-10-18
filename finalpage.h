@@ -18,6 +18,7 @@ public:
     void addTreeItem(const tripPage & page);
     ~finalpage();
     void setNetTotal(double value);
+    void setDistance(double distance);
 
 signals:
     void backToMenu();
@@ -31,6 +32,7 @@ private:
     vector<double> totalsList;
     int listSize;
     double net;
+    double distance;
 };
 
 #endif // FINALPAGE_H

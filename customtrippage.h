@@ -22,7 +22,7 @@ public:
     std::list<QString> * getCityList();
 
 private slots:
-    void on_backBtn_clicked();
+    //void on_backBtn_clicked();
     void on_finishBtn_clicked();
     void on_addBtn_clicked();
     void on_removeBtn_clicked();

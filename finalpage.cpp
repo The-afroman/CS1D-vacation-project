@@ -58,6 +58,13 @@ void finalpage::setNetTotal(double value){
     ui->totalLabel->setText(ui->totalLabel->text() + netTotal);
 }
 
+void finalpage::setDistance(double distance)
+{
+    this->distance = distance;
+    QString sDistance = QString::number(this->distance, 'f', 2);
+    ui->distanceLabel->setText(ui->distanceLabel->text() + " " + sDistance);
+}
+
 finalpage::~finalpage()
 {
     delete ui;

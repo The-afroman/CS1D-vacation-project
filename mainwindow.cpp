@@ -147,6 +147,7 @@ void MainWindow::resetStackW()
 void MainWindow::on_Trip1_clicked()
 {
     cout << "Planning new trip..." << endl;
+    finalPage = new finalpage;
 
    //ShortestTripWindow shortestTripWindow;
    //shortestTripWindow.setModal(true);
@@ -156,7 +157,7 @@ void MainWindow::on_Trip1_clicked()
     std::list<QString> * cities = new std::list<QString>;
     std::list<QString> * foodNames = new std::list<QString>;
     std::list<double> *  foodPrices = new std::list<double>;
-    findRouteFastest(cities, 11, "Paris");
+    finalPage->setDistance(findRouteFastest(cities, 11, "Paris"));
     std::list<QString>::iterator it;
     pages = new tripPage*[cities->size()];
     int count = 0;
@@ -171,6 +172,8 @@ void MainWindow::on_Trip1_clicked()
         if(count == 0){
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
+            temp = "NEXT CITY";
+            pages[count]->setTextButtonTwo(temp);
         }
         else if(count == static_cast<int>(listSize)-1){
             temp = "PREVIOUS CITY";
@@ -203,7 +206,8 @@ void MainWindow::on_Trip2_clicked()
     cout << "Planning custom trip starting at london..." << endl;
 
     cout << "Planning new trip..." << endl;
-    //nCityDialog->setAttribute(Qt::WA_DeleteOnClose);
+
+    finalPage = new finalpage;
     nCityDialog = new numCities;
     QObject::connect(nCityDialog, SIGNAL(finish(int)), this, SLOT(Trip2(int)));
     nCityDialog->show();
@@ -215,7 +219,7 @@ void MainWindow::Trip2(int nCities)
     std::list<QString> * cities = new std::list<QString>;
     std::list<QString> * foodNames = new std::list<QString>;
     std::list<double> *  foodPrices = new std::list<double>;
-    findRouteFastest(cities, nCities, "London");
+    finalPage->setDistance(findRouteFastest(cities, nCities, "London"));
     std::list<QString>::iterator it;
     pages = new tripPage*[cities->size()];
     int count = 0;
@@ -230,6 +234,8 @@ void MainWindow::Trip2(int nCities)
         if(count == 0){
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
+            temp = "NEXT CITY";
+            pages[count]->setTextButtonTwo(temp);
         }
         else if(count == static_cast<int>(listSize)-1){
             temp = "PREVIOUS CITY";
@@ -261,6 +267,7 @@ void MainWindow::Trip2(int nCities)
 void MainWindow::on_Trip3_clicked()
 {
     planner = new customTripPage;
+    finalPage = new finalpage;
     cout << "Planning totally custom trip..." << endl;
     QObject::connect(planner, SIGNAL(changetoPagePrev()), this, SLOT(pagePrevious()));
     QObject::connect(planner, SIGNAL(finish(std::list<QString> *)), this, SLOT(Trip3(std::list<QString> *)));
@@ -275,7 +282,7 @@ void MainWindow::Trip3(std::list<QString> * initCities)
     std::list<QString> * citiesList = new std::list<QString>;
     std::list<QString> * foodNames = new std::list<QString>;
     std::list<double> *  foodPrices = new std::list<double>;
-    findRouteFastestCustom(citiesList, initCities);
+    finalPage->setDistance(findRouteFastestCustom(citiesList, initCities));
     qDebug() << "CUSTOM ROUTE:\n\n";
     qDebug() << citiesList->front();
     qDebug() << initCities->front();
@@ -293,6 +300,8 @@ void MainWindow::Trip3(std::list<QString> * initCities)
         if(count == 0){
             temp = "HIDE";
             pages[count]->setTextButtonOne(temp);
+            temp = "NEXT CITY";
+            pages[count]->setTextButtonTwo(temp);
         }
         else if(count == static_cast<int>(listSize)-1){
             temp = "PREVIOUS CITY";
@@ -345,9 +354,6 @@ void MainWindow::nextPage(){
 }
 
 void MainWindow::tripFinish(){
-
-    finalPage = new finalpage;
-
     QObject::connect(finalPage, SIGNAL(backToMenu()), this, SLOT(resetStackW()));
 
     qDebug() << listSize << endl;
@@ -363,7 +369,6 @@ void MainWindow::tripFinish(){
 
     ui->stackedWidget->addWidget(finalPage);
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() +1);
+
 }
-
-
 

@@ -31,7 +31,6 @@ public slots:
     void Trip3(std::list<QString> * initCities);
 
 private slots:
-
     void on_Trip1_clicked();
     void on_Trip2_clicked();
     void on_Trip3_clicked();

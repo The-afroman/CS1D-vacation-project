@@ -36,17 +36,22 @@ customTripPage::~customTripPage()
 
 void customTripPage::on_addBtn_clicked()
 {
-    QString city;
-    city = ui->cityList->currentItem()->data(0).toString();
-    qDebug() << city << '\n';
-    ui->tripList->addItem(city);
+    if(ui->cityList->currentItem() != nullptr)
+    {
+        QString city;
+        city = ui->cityList->currentItem()->text();
+        //qDebug() << city << '\n';
+        ui->tripList->addItem(city);
+        int row = ui->cityList->currentRow();
+        ui->cityList->takeItem(row);
+    }
 }
-
+/*
 void customTripPage::on_backBtn_clicked()
 {
     emit changetoPagePrev();
 }
-
+*/
 void customTripPage::on_finishBtn_clicked()
 {
     for(int i = 0; i < ui->tripList->count(); i++)
@@ -67,6 +72,10 @@ void customTripPage::on_finishBtn_clicked()
 
 void customTripPage::on_removeBtn_clicked()
 {
-    int row = ui->tripList->currentRow();
-    ui->tripList->takeItem(row);
+    if(ui->tripList->currentItem() != nullptr)
+    {
+        ui->cityList->addItem(ui->tripList->currentItem()->text());
+        int row = ui->tripList->currentRow();
+        ui->tripList->takeItem(row);
+    }
 }
