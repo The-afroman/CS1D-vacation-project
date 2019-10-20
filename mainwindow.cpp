@@ -7,6 +7,7 @@
 #include "shortesttripwindow.h"
 #include "customtrippage.h"
 #include "numcities.h"
+#include "login.h"
 
 using namespace std;
 
@@ -374,3 +375,10 @@ void MainWindow::tripFinish(){
 
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    login *w = new login(this);
+    w->show();
+    this->close();
+}

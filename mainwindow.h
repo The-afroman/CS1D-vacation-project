@@ -35,6 +35,8 @@ private slots:
     void on_Trip2_clicked();
     void on_Trip3_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui = nullptr;
     numCities * nCityDialog = nullptr;
