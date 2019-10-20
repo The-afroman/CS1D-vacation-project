@@ -5,7 +5,7 @@ DbManager::DbManager(const QString& path)
 {
    m_db = QSqlDatabase::addDatabase("QSQLITE");
    m_db.setDatabaseName(path);
-
+   //m_db.open();
    if (!m_db.open())
    {
       qDebug() << "Error: connection with database fail";
@@ -26,6 +26,9 @@ else{
     query.isActive();
     }
 */
+}
+DbManager::~DbManager(){
+
 }
 
 bool DbManager::addCity(const QString& start, const QString& finish, const double& distance)
@@ -72,6 +75,8 @@ bool DbManager::addFood(const QString & city, const QString & food, const double
     return success;
 }
 
+
+
 void DbManager::printCities(){
     QSqlQuery query("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
@@ -107,10 +112,9 @@ void DbManager::eraseData(){
     query.exec();
 }
 
-void loadCityData(DbManager & db){
-
+void loadCityData(DbManager & db, QString filename){
     std::ifstream input;
-    input.open("/home/f/projects/CS1D-vacation-project/distancedata.csv");
+    input.open(filename.toStdString());
     std::string startCity;
     std::string endCity;
     std::string distance;
@@ -121,12 +125,19 @@ void loadCityData(DbManager & db){
         while(!input.eof()){
            getline(input, startCity , ',');
            getline(input, endCity , ',');
-           getline(input, distance , '\n');
-           db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
+           getline(input, distance);
+
+           if(startCity != "")
+           {
+               qDebug() << QString::fromStdString(startCity) + " "
+                        << QString::fromStdString(endCity) + " "
+                        << QString::fromStdString(distance);
+               db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
+            }
         }
     }
     else{
-        std::cout << "Could not open data.csv" << std::endl;
+        std::cout << "Could not open file" << std::endl;
     }
 }
 
@@ -150,7 +161,25 @@ QString findFirstCity()
     return query.value(0).toString();
 }
 
-double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double netDistance)
+void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName){
+    QSqlQuery query;
+    QString city = cityName;
+    query.prepare("SELECT * FROM foods WHERE city= ?");
+    query.addBindValue(city);
+    query.exec();
+    int idFood = query.record().indexOf("food");
+    int idPrice = query.record().indexOf("price");
+    while (query.next())
+    {
+
+       QString food = query.value(idFood).toString();
+       double price = query.value(idPrice).toDouble();
+       foodNames->push_back(food);
+       foodPrices->push_back(price);
+    }
+}
+
+double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double distance)
 {
     QSqlQuery query;
 
@@ -164,11 +193,11 @@ double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCit
     //qDebug() << cities <<endl <<endl;
 
     query.prepare("SELECT * FROM citydata WHERE start= ? ORDER by distance ASC");
-
     QString start;
     if(orderedCities->size() == 0)
     {
         start = startCity;
+        distance = 0;
         orderedCities->push_back(start);
     }
     else
@@ -187,10 +216,8 @@ double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCit
     {
         if(checkCity(query.value(idFinish).toString(), orderedCities))
         {
-            //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
+            distance += query.value(idDistance).toDouble();
             finish = query.value(idFinish).toString();
-            netDistance += query.value(idDistance).toDouble();
-            qDebug() << netDistance;
             endSearch = true;
         }
     }
@@ -198,29 +225,39 @@ double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCit
     if(orderedCities->size() < numCities)
     {
         query.finish();
-        return findRouteFastest(orderedCities, numCities, startCity, netDistance);
+        return findRouteFastest(orderedCities, numCities, startCity, distance);
     }
     else
     {
-        return netDistance;
+        return distance;
     }
-
 }
 
-double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities, double netDistance)
+double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities, double distance)
 {
     QSqlQuery query;
     QString start;
-    bool startFound = false;
+    unsigned long size = 0;
+    //bool startFound = false;
     if(orderedCities->size() == 0)
-    {
+    {   /*
+        //this finds the first city with the shortest dist.
         query.exec("SELECT start, MIN(distance) From citydata");
         while(query.next() && !startFound)
         {
             if(!checkCity(query.value(0).toString(), includedCities))
+            {
                 startFound = true;
+                start = query.value(0).toString();
+            }
         }
         orderedCities->push_back(start);
+        */
+
+        // will start at the first city in includedCities
+        start = includedCities->front();
+        orderedCities->push_back(start);
+        distance = 0;
     }
     else
     {
@@ -228,7 +265,7 @@ double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStr
     }
     query.prepare("SELECT * FROM citydata WHERE start= ? ORDER by distance ASC");
 
-    start = orderedCities->back();
+    //start = orderedCities->back();
     query.addBindValue(start);
     query.exec();
     //int idStart = query.record().indexOf("start");
@@ -241,20 +278,20 @@ double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QStr
     {
         if(checkCity(query.value(idFinish).toString(), orderedCities) && !checkCity(query.value(idFinish).toString(), includedCities))
         {
-            //qDebug() << query.value(idDistance).toDouble() << " " << query.value(idFinish).toString() << " ";
+            distance += query.value(idDistance).toDouble();
             finish = query.value(idFinish).toString();
-            netDistance += query.value(idDistance).toDouble();
             endSearch = true;
         }
     }
     orderedCities->push_back(finish);
-    if(orderedCities->size() < includedCities->size())
+    size = includedCities->size();
+    if(orderedCities->size() < size)
     {
         query.finish();
-        return findRouteFastestCustom(orderedCities, includedCities, netDistance);
+        return findRouteFastestCustom(orderedCities, includedCities, distance);
     }
     else
     {
-        return netDistance;
+        return distance;
     }
 }

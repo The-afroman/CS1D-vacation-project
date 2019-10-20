@@ -10,15 +10,15 @@ removefood::removefood(QWidget *parent) :
 {
     ui->setupUi(this);
     QString path = qApp->applicationDirPath();
-    DbManager database("C:/cities.db");
+    DbManager database(path + "/cities.db");
     QSqlQuery query("SELECT food FROM foods");
-    //int idStart = query.record().indexOf("food");
+    int idStart = query.record().indexOf("food");
     int count = 10;
     while (query.next())
     {
         if(count <= 110)
         {
-            QString start = query.value(0).toString();
+            QString start = query.value(idStart).toString();
             ui->listWidget->addItem(start);
         }
         count++;

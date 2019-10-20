@@ -26,6 +26,7 @@ class DbManager
 {
 public:
     DbManager(const QString& path);
+    ~DbManager();
     bool addCity(const QString&,  const QString&, const double&);
     bool addFood(const QString&, const QString&, const double&);
     void printCities();
@@ -35,8 +36,11 @@ private:
     QSqlDatabase m_db;
 };
 
+void loadCityData(DbManager & db, QString filename);
 bool checkCity(QString name, std::list<QString> * orderedCities);
 QString findFirstCity();
-double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double netDistance=0);
-double findRouteFastestCustom(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double netDistance=0);
+void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName);
+double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double distance = 0);
+double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities, double distance = 0);
+
 #endif // DATABASE_H

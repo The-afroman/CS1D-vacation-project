@@ -2,6 +2,7 @@
 #define ADMIN_H
 
 #include <QDialog>
+#include <QFileDialog>
 
 namespace Ui {
 class admin;
@@ -18,6 +19,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
     void on_pushButton_4_clicked();
 
     void on_pushButton_3_clicked();
@@ -25,6 +28,7 @@ private slots:
     void on_pushButton_5_clicked();
 
 private:
+    QFileDialog *file;
     Ui::admin *ui;
 };
 
