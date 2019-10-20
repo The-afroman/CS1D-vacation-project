@@ -5,7 +5,7 @@ DbManager::DbManager(const QString& path)
 {
    m_db = QSqlDatabase::addDatabase("QSQLITE");
    m_db.setDatabaseName(path);
-
+   //m_db.open();
    if (!m_db.open())
    {
       qDebug() << "Error: connection with database fail";
@@ -26,6 +26,9 @@ else{
     query.isActive();
     }
 */
+}
+DbManager::~DbManager(){
+
 }
 
 bool DbManager::addCity(const QString& start, const QString& finish, const double& distance)
@@ -109,10 +112,9 @@ void DbManager::eraseData(){
     query.exec();
 }
 
-void loadCityData(DbManager & db){
-
+void loadCityData(DbManager & db, QString filename){
     std::ifstream input;
-    input.open("/home/f/projects/CS1D-vacation-project/distancedata.csv");
+    input.open(filename.toStdString());
     std::string startCity;
     std::string endCity;
     std::string distance;
@@ -123,12 +125,19 @@ void loadCityData(DbManager & db){
         while(!input.eof()){
            getline(input, startCity , ',');
            getline(input, endCity , ',');
-           getline(input, distance , '\n');
-           db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
+           getline(input, distance);
+
+           if(startCity != "")
+           {
+               qDebug() << QString::fromStdString(startCity) + " "
+                        << QString::fromStdString(endCity) + " "
+                        << QString::fromStdString(distance);
+               db.addCity(QString::fromStdString(startCity),QString::fromStdString(endCity), atof(distance.c_str()));
+            }
         }
     }
     else{
-        std::cout << "Could not open data.csv" << std::endl;
+        std::cout << "Could not open file" << std::endl;
     }
 }
 

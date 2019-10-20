@@ -85,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     }
     QString path = qApp->applicationDirPath();
-    DbManager database("C:/cities.db");
+    DbManager database(path + "/cities.db");
 
     //THIS CODE READS IN THE DATABASE AND EACH CITY ONLY ONCE TO LISTWIDGET
     //loadCityData(database);
@@ -110,6 +110,7 @@ MainWindow::~MainWindow()
     delete[] pages;
     delete planner;
     delete ui;
+    QApplication::quit();
 
 }
 

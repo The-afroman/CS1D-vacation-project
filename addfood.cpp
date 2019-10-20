@@ -10,12 +10,13 @@ addfood::addfood(QWidget *parent) :
 {
     ui->setupUi(this);
     QString path = qApp->applicationDirPath();
-    DbManager database( "C:/cities.db");
+    QString start;
+    DbManager database(path + "/cities.db");
     QSqlQuery query("SELECT DISTINCT start FROM citydata");
     int idStart = query.record().indexOf("start");
     while (query.next())
     {
-        QString start = query.value(idStart).toString();
+        start = query.value(idStart).toString();
         ui->listWidget->addItem(start);
     }
 }

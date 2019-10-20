@@ -26,6 +26,7 @@ class DbManager
 {
 public:
     DbManager(const QString& path);
+    ~DbManager();
     bool addCity(const QString&,  const QString&, const double&);
     bool addFood(const QString&, const QString&, const double&);
     void printCities();
@@ -35,6 +36,7 @@ private:
     QSqlDatabase m_db;
 };
 
+void loadCityData(DbManager & db, QString filename);
 bool checkCity(QString name, std::list<QString> * orderedCities);
 QString findFirstCity();
 void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName);
