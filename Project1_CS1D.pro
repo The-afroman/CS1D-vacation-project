@@ -27,35 +27,45 @@ CONFIG += c++11
 SOURCES += \
         addfood.cpp \
         admin.cpp \
+        customtrippage.cpp \
         database.cpp \
+        finalpage.cpp \
         login.cpp \
         main.cpp \
         mainwindow.cpp \
         removefood.cpp \
+        numcities.cpp \
         shortesttripwindow.cpp \
-        trippage.cpp \
-        removecity.cpp
+        removecity.cpp \
+        trippage.cpp
 
 HEADERS += \
         addfood.h \
         admin.h \
         city.h \
+        customtrippage.h \
         database.h \
+        finalpage.h \
         login.h \
         mainwindow.h \
         removefood.h \
+        numcities.h \
         shortesttripwindow.h \
-        trippage.h \
-        removecity.h
+        removecity.h \
+        trippage.h
 
 FORMS += \
         addfood.ui \
         admin.ui \
+        finalpage.ui \
+        customtrippage.ui \
         login.ui \
         mainwindow.ui \
+        numcities.ui \
         removecity.ui \
         removefood.ui \
-        shortesttripwindow.ui
+        shortesttripwindow.ui \
+        trippage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

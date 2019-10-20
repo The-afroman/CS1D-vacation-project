@@ -1,37 +1,75 @@
 #ifndef TRIPPAGE_H
 #define TRIPPAGE_H
 
-#include <QObject>
-#include <QPushButton>
 #include <QWidget>
-#include <list>
-#include "database.h"
+#include <QMainWindow>
+#include <QLabel>
+#include <QSpinBox>
+#include <QLayout>
+#include <iostream>
+#include <QDebug>
+#include <QSlider>
+using namespace std;
 
 
-    class tripPage : public QWidget
-    {
-        Q_OBJECT
+namespace Ui {
+class tripPage;
+}
 
-    public:
+class tripPage : public QWidget
+{
+    Q_OBJECT
 
-        tripPage( QWidget *parent = nullptr);
-        ~tripPage();
+public:
+    explicit tripPage(QWidget *parent = nullptr);
+    ~tripPage();
+
+    void setTitle(QString &);
+    QString getTitle()const;
+    void setTextButtonOne(QString &);
+    void setTextButtonTwo(QString &);
+    void setFoodData(list<QString> *, list<double> *);
+    void initFoodUI();
+    QString getTextButtonTwo()const;
+    int getFoodListSize()const;
+    void setFoodListSize(unsigned long long);
+    double getTotal()const;
+    QSpinBox ** getFoodQtyBox() const;
+    list<QString> * getFoodNames() const;
+    list<double> * getFoodPrices() const;
+    QLabel ** getFoodLabels()const;
 
 
+private slots:
+    void on_pushButton_clicked();
 
-    private:
+    void on_pushButton_2_clicked();
 
-        void initUI();
+    void on_valueChanged();
 
-        list<double> *prices;
-        list<QString> *foods;
-        list<QString> *cityNames;
+signals:
 
-        QPushButton *back;
-        QPushButton *next;
+    void changePageNext();
+    void changePagePrev();
+    void valueChanged();
+    void finishTrip();
 
-    };
+private:
+    void setFoodNameLabel(const QString &, int count);
+    void appendFoodLabel(const double &, int count);
+    Ui::tripPage *ui;
+    QLabel * cityTitle;
+    QLabel ** foodNameLabels;
+    QSpinBox ** foodQtyBox;
+    list<QString> *foodNames;
+    list<double> *foodPrices;
+    QHBoxLayout * hbox;
+    QWidget * tempW;
+    QLabel * priceLabel;
+    QLabel * distanceSoFar;
+    unsigned long long sizeOfFoodLists;
+    double total = 0;
 
+};
 
 #endif // TRIPPAGE_H
-
