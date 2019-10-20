@@ -133,6 +133,7 @@ void MainWindow::resetStackW()
     if(nCityDialog!=nullptr)
     {
         delete nCityDialog;
+        nCityDialog=nullptr;
     }
     int count = ui->stackedWidget->count()-1;
     for(int i=0; i < count; i++)
