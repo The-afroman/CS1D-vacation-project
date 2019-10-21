@@ -10,7 +10,7 @@ removefood::removefood(QWidget *parent) :
 {
     ui->setupUi(this);
     QString path = qApp->applicationDirPath();
-   DbManager database("C:/Users/Mohammed/Documents/GitHub/CS1D-vacation-project/cities.db");
+   DbManager database(path + "/cities.db");
     QSqlQuery query("SELECT food FROM foods");
     int idStart = query.record().indexOf("food");
     int count = 10;
