@@ -3,6 +3,7 @@
 #include "database.h"
 #include "admin.h"
 #include "qdebug.h"
+
 removecity::removecity(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::removecity)
@@ -25,6 +26,7 @@ removecity::~removecity()
     delete ui;
 }
 
+/*! Opens admin panel*/
 void removecity::on_pushButton_2_clicked()
 {
     admin *h =  new admin(this);
@@ -32,12 +34,14 @@ void removecity::on_pushButton_2_clicked()
     h->show();
 }
 
-
+/*! Takes the city name clicked on from the list widget and puts it into
+ * the cityname variable so it can be deleted */
 void removecity::on_listWidget_itemPressed(QListWidgetItem *item)
 {
     cityname=item->text();
 }
 
+/*! Deletes city from QSqlQuery query */
 void removecity::on_pushButton_clicked()
 {
    qDebug() << cityname;

@@ -14,6 +14,8 @@ void finalpage::initUI(){
 
 }
 
+/*! Used to display the tree widget. The function adds the
+ * data collected throught the trip and displays it in the tree widget*/
 void finalpage::addTreeItem(const tripPage & page){
     qDebug() << "made it into add tree item function for " << page.getTitle() <<  endl;
     QTreeWidgetItem * item = new QTreeWidgetItem(ui->tripTree);
@@ -52,12 +54,14 @@ void finalpage::addTreeItem(const tripPage & page){
 
 }
 
+/*! Sets the total cost then displays it using a label*/
 void finalpage::setNetTotal(double value){
     net = value;
     QString netTotal = QString::number(net, 'f', 2);
     ui->totalLabel->setText(ui->totalLabel->text() + netTotal);
 }
 
+/*! Sets the distance then displays it using a label*/
 void finalpage::setDistance(double distance)
 {
     this->distance = distance;
@@ -70,6 +74,7 @@ finalpage::~finalpage()
     delete ui;
 }
 
+/*! Returns to the main menu */
 void finalpage::on_pushButton_clicked()
 {
     emit backToMenu();

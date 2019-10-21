@@ -20,6 +20,7 @@ ShortestTripWindow::~ShortestTripWindow()
     delete ui;
 }
 
+/*! Finds the fastest trip starting at the first city in the list */
 void ShortestTripWindow::on_confirmTrip_clicked()
 {
 

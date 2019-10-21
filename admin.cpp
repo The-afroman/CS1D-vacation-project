@@ -20,6 +20,7 @@ admin::~admin()
 
 }
 
+/*! Opens up the main menu and closes the admin panel*/
 void admin::on_pushButton_clicked()
 {
     MainWindow *w = new MainWindow(this);
@@ -27,6 +28,7 @@ void admin::on_pushButton_clicked()
     this->close();
 }
 
+/*! Opens the remove city window and closes admin panel*/
 void admin::on_pushButton_4_clicked()
 {
     removecity *r = new removecity(this);
@@ -34,8 +36,7 @@ void admin::on_pushButton_4_clicked()
     r->show();
 }
 
-
-
+/*! Opens up add food window and closes admin panel */
 void admin::on_pushButton_3_clicked()
 {
     addfood *f = new addfood(this);
@@ -43,6 +44,7 @@ void admin::on_pushButton_3_clicked()
     f->show();
 }
 
+/*! Opens up remove food window and closes admin panel */
 void admin::on_pushButton_5_clicked()
 {
     removefood *j = new removefood(this);
@@ -50,6 +52,7 @@ void admin::on_pushButton_5_clicked()
     j->show();
 }
 
+/*! Allows the admin to choose a file from their computer to add cities to the database */
 void admin::on_pushButton_2_clicked()
 {
     QString path = qApp->applicationDirPath();

@@ -26,6 +26,7 @@ addfood::~addfood()
     delete ui;
 }
 
+/*! Closes the curent window and opens the admin window again*/
 void addfood::on_pushButton_2_clicked()
 {
     admin *h =  new admin(this);
@@ -33,6 +34,7 @@ void addfood::on_pushButton_2_clicked()
     h->show();
 }
 
+/*! Adds the name of the food and the price to the selected city name */
 void addfood::on_pushButton_clicked()
 {
    QString food= ui->plainTextEdit->toPlainText();
@@ -49,6 +51,8 @@ void addfood::on_pushButton_clicked()
    query.finish();
 }
 
+/*! Takes the city name that was clicked on by user in the list widget
+ * and puts it into the cityname variable so the food can be added to the city*/
 void addfood::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     cityname=item->text();

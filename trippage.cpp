@@ -32,6 +32,9 @@ tripPage::~tripPage()
     delete ui;
 }
 
+/*! Displays the names of the food items as labels and a food quantity
+ * QSpinBox for each food item that can be used to change the amount desired
+ * for purchase of a given food item */
 void tripPage::initFoodUI(){
     sizeOfFoodLists = (foodPrices->size());
     qDebug() << "size of list is :" << sizeOfFoodLists << endl;
@@ -123,23 +126,27 @@ double tripPage::getTotal()const{
     return total;
 }
 
+/*! Sets the button to either hidden or sets the text to say previous city */
 void tripPage::setTextButtonOne(QString & text){
     if(text.compare("HIDE") == 0)ui->pushButton->hide();
 
     ui->pushButton->setText(text);
 }
 
+/*! Sets the button to either hidden or sets the text to say next city or finish trip */
 void tripPage::setTextButtonTwo(QString & text){
     if(text.compare("HIDE") == 0)ui->pushButton->hide();
 
     ui->pushButton_2->setText(text);
 }
 
+/*! Gets called when Previous City button is clicked and goes back to the previous city in the trip*/
 void tripPage::on_pushButton_clicked()
 {
     emit changePagePrev();
 }
 
+/*! Gets called when Next City button is clicked or when the trip is finished it calls the finish trip function */
 void tripPage::on_pushButton_2_clicked()
 {
     //qDebug() << ui->pushButton_2->text();
@@ -149,10 +156,12 @@ void tripPage::on_pushButton_2_clicked()
     
 }
 
+/*! Creates the name of the food labels for each food using the text and index passed to the function */
 void tripPage::setFoodNameLabel(const QString & text, int count){
     foodNameLabels[count]->setText("Name: " + text);
 }
 
+/*! Adds price to the label for the food items using an index*/
 void tripPage::appendFoodLabel(const double & number, int count){
     foodNameLabels[count]->setText(foodNameLabels[count]->text() + QString::fromStdString("\nPrice: $" + to_string(number).substr(0, 4) + "\nQuantity to buy:"));
 }
