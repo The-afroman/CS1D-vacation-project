@@ -42,7 +42,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Remove City</string>
+    <string>Remove Selected City</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
