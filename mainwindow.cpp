@@ -107,7 +107,7 @@ MainWindow::~MainWindow()
 {
     for(int i = 0; i< ui->stackedWidget->count(); i++){
         delete pages[i];
-    }
+    } //!< loopes through array to delete the pages of the stacked widget
     delete finalPage;
     delete[] pages;
     delete planner;
@@ -116,7 +116,7 @@ MainWindow::~MainWindow()
 
 }
 
-// will reset the stacked widget
+/*! Will reset the stacked widget to its initail state*/
 void MainWindow::resetStackW()
 {
     ui->stackedWidget->setCurrentIndex(0);
@@ -148,6 +148,7 @@ void MainWindow::resetStackW()
     delete[] pages;
 }
 
+/*! Creates the stacked widget for the shortest trip displaying all the information for each city page */
 void MainWindow::on_Trip1_clicked()
 {
     cout << "Planning new trip..." << endl;
@@ -205,6 +206,7 @@ void MainWindow::on_Trip1_clicked()
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
+/*! Uses signal and slots to access Trip2() */
 void MainWindow::on_Trip2_clicked()
 {
     cout << "Planning custom trip starting at london..." << endl;
@@ -217,6 +219,7 @@ void MainWindow::on_Trip2_clicked()
     nCityDialog->show();
 }
 
+/*! Creates the stacked widget for the custom trip starting at london displaying all the information for each city page */
 void MainWindow::Trip2(int nCities)
 {
     QString temp;
@@ -268,6 +271,7 @@ void MainWindow::Trip2(int nCities)
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
+/*! Uses signal and slots to access Trip3() */
 void MainWindow::on_Trip3_clicked()
 {
     planner = new customTripPage;
@@ -280,6 +284,7 @@ void MainWindow::on_Trip3_clicked()
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
+/*! Creates the stacked widget for the custom trip displaying all the information for each city page */
 void MainWindow::Trip3(std::list<QString> * initCities)
 {
     QString temp;
@@ -334,7 +339,7 @@ void MainWindow::Trip3(std::list<QString> * initCities)
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
-
+/*! Moves to the previous city in the trip*/
 void MainWindow::pagePrevious(){
     if(ui->stackedWidget->count() >= 2 && ui->stackedWidget->currentIndex() != 0){
          ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() -1);
@@ -345,6 +350,7 @@ void MainWindow::pagePrevious(){
     }
 }
 
+/*! Moves to the next city in the trip*/
 void MainWindow::nextPage(){
     if(ui->stackedWidget->count() > 1 && ui->stackedWidget->currentIndex() < ui->stackedWidget->count()){
         ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
@@ -357,6 +363,7 @@ void MainWindow::nextPage(){
 
 }
 
+/*! Gets the information from the trip and opens up the final page and pases in the information*/
 void MainWindow::tripFinish(){
     QObject::connect(finalPage, SIGNAL(backToMenu()), this, SLOT(resetStackW()));
 
@@ -376,7 +383,7 @@ void MainWindow::tripFinish(){
 
 }
 
-
+/*! Opens login window and closes main window*/
 void MainWindow::on_pushButton_clicked()
 {
     login *w = new login(this);

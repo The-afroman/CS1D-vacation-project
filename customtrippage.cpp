@@ -34,6 +34,7 @@ customTripPage::~customTripPage()
     delete ui;
 }
 
+/*! Adds the city that the user clicked on in the list widget to the list of cities for the users trip */
 void customTripPage::on_addBtn_clicked()
 {
     if(ui->cityList->currentItem() != nullptr)
@@ -52,6 +53,8 @@ void customTripPage::on_backBtn_clicked()
     emit changetoPagePrev();
 }
 */
+
+/*! Puts the created trip list into the cities variable */
 void customTripPage::on_finishBtn_clicked()
 {
     for(int i = 0; i < ui->tripList->count(); i++)
@@ -70,6 +73,7 @@ void customTripPage::on_finishBtn_clicked()
     emit finish(cities);
 }
 
+/*! Removes a city that was added by the user to their trip list  */
 void customTripPage::on_removeBtn_clicked()
 {
     if(ui->tripList->currentItem() != nullptr)

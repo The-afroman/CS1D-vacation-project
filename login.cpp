@@ -17,6 +17,8 @@ login::~login()
     delete ui;
 }
 
+/*! Displays login screen and takes the input for username and password from the user.
+ * Allows access for a normal user and an admin user*/
 void login::on_pushButton_login_clicked()
 {
     QString username = ui->lineEdit_username->text();

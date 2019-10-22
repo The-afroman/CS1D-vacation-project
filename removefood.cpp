@@ -31,6 +31,7 @@ removefood::~removefood()
     delete ui;
 }
 
+/*! updates the price of the selected food */
 void removefood::on_pushButton_clicked()
 {
     qDebug() << foodname;
@@ -43,13 +44,13 @@ void removefood::on_pushButton_clicked()
     query.finish();
 
 }
-
+/*! Takes the food item clicked on in the list widget at puts it into the foodname variable so it can be deleted*/
 void removefood::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     foodname=item->text();
 }
 
-
+/*! Opens the admin panel*/
 void removefood::on_pushButton_2_pressed()
 {
     admin *h =  new admin(this);
@@ -57,6 +58,7 @@ void removefood::on_pushButton_2_pressed()
     h->show();
 }
 
+/*! removes the food from query */
 void removefood::on_pushButton_3_clicked()
 {
     QSqlQuery query;

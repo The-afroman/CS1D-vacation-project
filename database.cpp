@@ -31,6 +31,7 @@ DbManager::~DbManager(){
 
 }
 
+/*! Adds cities using QSqlQuery */
 bool DbManager::addCity(const QString& start, const QString& finish, const double& distance)
 {
     bool success = false;
@@ -53,6 +54,7 @@ bool DbManager::addCity(const QString& start, const QString& finish, const doubl
     return success;
 }
 
+/*! Adds food using QSqlQuery */
 bool DbManager::addFood(const QString & city, const QString & food, const double & price)
 {
     bool success = false;
@@ -76,7 +78,7 @@ bool DbManager::addFood(const QString & city, const QString & food, const double
 }
 
 
-
+/*! Displays cities*/
 void DbManager::printCities(){
     QSqlQuery query("SELECT * FROM citydata");
     int idStart = query.record().indexOf("start");
@@ -91,6 +93,7 @@ void DbManager::printCities(){
     }
 }
 
+/*! Displays food*/
 void DbManager::printFoods(){
     QSqlQuery query("SELECT * FROM foods");
     int idStart = query.record().indexOf("city");
@@ -105,13 +108,14 @@ void DbManager::printFoods(){
     }
 }
 
-
+/*! Deletes data using query */
 void DbManager::eraseData(){
     QSqlQuery query;
     query.prepare("DELETE FROM citydata");
     query.exec();
 }
 
+/*! Loads in the city data from a specified file found in the computer*/
 void loadCityData(DbManager & db, QString filename){
     std::ifstream input;
     input.open(filename.toStdString());
@@ -141,6 +145,7 @@ void loadCityData(DbManager & db, QString filename){
     }
 }
 
+/*! Checks to see if the name of the city is allready in the list or not */
 bool checkCity(QString name, std::list<QString> * orderedCities)
 {
     std::list<QString>::iterator it;
@@ -152,7 +157,7 @@ bool checkCity(QString name, std::list<QString> * orderedCities)
     return true;
 }
 
-// finds the shortest first trip and makes that the starting city
+/*! Finds the shortest first trip and makes that the starting city */
 QString findFirstCity()
 {
     QSqlQuery query;
@@ -161,6 +166,7 @@ QString findFirstCity()
     return query.value(0).toString();
 }
 
+/*! Returns the food data including the name of the food and its price */
 void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices, QString & cityName){
     QSqlQuery query;
     QString city = cityName;
@@ -179,6 +185,7 @@ void getFoodData(std::list<QString> * foodNames, std::list<double> * foodPrices,
     }
 }
 
+/*! Finds the fastest route given the parameters like starting city and number of cities*/
 double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCities, QString startCity, double distance)
 {
     QSqlQuery query;
@@ -233,6 +240,7 @@ double findRouteFastest(std::list<QString> * orderedCities, unsigned long numCit
     }
 }
 
+/*! Finds the fastest route starting from the first city which is the first city in the list of cities passed in to the function */
 double findRouteFastestCustom(std::list<QString> * orderedCities, std::list<QString> * includedCities, double distance)
 {
     QSqlQuery query;
