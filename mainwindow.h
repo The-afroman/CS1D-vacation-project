@@ -44,6 +44,7 @@ private:
     tripPage ** pages = nullptr;
     finalpage * finalPage = nullptr;
     unsigned long long listSize;
+    int totalCities = 0;
 
 };
 

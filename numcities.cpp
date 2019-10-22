@@ -1,11 +1,13 @@
 #include "numcities.h"
 #include "ui_numcities.h"
+#include "database.h"
 
-numCities::numCities(QWidget *parent) :
+numCities::numCities(QWidget *parent, int maxSpinBox) :
     QWidget(parent),
     ui(new Ui::numCities)
 {
     ui->setupUi(this);
+    ui->spinBox->setRange(2, maxSpinBox);
 }
 
 numCities::~numCities()

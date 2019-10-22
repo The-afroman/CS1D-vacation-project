@@ -96,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         QString start = query.value(idStart).toString();
         ui->listWidget->addItem(start);
+        totalCities++;
     }
     //database.printCities();
     //database.printFoods();
@@ -211,7 +212,7 @@ void MainWindow::on_Trip2_clicked()
     cout << "Planning new trip..." << endl;
 
     finalPage = new finalpage;
-    nCityDialog = new numCities;
+    nCityDialog = new numCities(nullptr, totalCities);
     QObject::connect(nCityDialog, SIGNAL(finish(int)), this, SLOT(Trip2(int)));
     nCityDialog->show();
 }

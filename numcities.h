@@ -12,7 +12,7 @@ class numCities : public QWidget
     Q_OBJECT
 
 public:
-    explicit numCities(QWidget *parent = nullptr);
+    explicit numCities(QWidget *parent = nullptr, int maxSpinBox=11);
     ~numCities();
 
 private slots:
