@@ -10,6 +10,9 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
+    ui->lineEdit_username->setText("test");
+    ui->lineEdit_password_2->setText("test");
+
 }
 
 login::~login()
