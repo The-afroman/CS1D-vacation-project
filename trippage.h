@@ -114,6 +114,7 @@ private:
     QLabel * distanceSoFar;
     unsigned long long sizeOfFoodLists;
     double total = 0;
+    QLabel * label1;
 
 };
 

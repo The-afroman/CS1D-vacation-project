@@ -6,6 +6,7 @@ tripPage::tripPage(QWidget *parent) :
     ui(new Ui::tripPage)
 {
     ui->setupUi(this);
+    label1 = new QLabel("  Order Food: ");
     foodNames = new list<QString>;
     foodPrices = new list<double>;
     ui->pushButton->setMinimumSize(150,50);
@@ -46,6 +47,9 @@ void tripPage::initFoodUI(){
     QLabel temp;
     QFont serifFont("Times", 12, QFont::Bold);
     //qDebug() << "size of food list is apperantly: " <<  size << endl;
+    label1->setFont(serifFont);
+    label1->setStyleSheet("background-color: rgb(226, 255, 219);");
+    ui->vboxLabel->addWidget(label1);
     for(int i = 0; i < static_cast<int>(sizeOfFoodLists); i++){
         hbox = new QHBoxLayout;
         tempW = new QWidget;
