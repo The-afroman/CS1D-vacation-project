@@ -49,7 +49,7 @@ void finalpage::addTreeItem(const tripPage & page){
     QTreeWidgetItem *child = new QTreeWidgetItem();
     child->setText(3, "Subtotal: ");
     QString pageTotal = QString::number(page.getTotal(),'f', 2);
-    child->setText(4, pageTotal);
+    child->setText(4, "$" + pageTotal);
     item->addChild(child);
 
 }
@@ -66,7 +66,7 @@ void finalpage::setDistance(double distance)
 {
     this->distance = distance;
     QString sDistance = QString::number(this->distance, 'f', 2);
-    ui->distanceLabel->setText(ui->distanceLabel->text() + " " + sDistance);
+    ui->distanceLabel->setText(ui->distanceLabel->text() + " " + sDistance + "km");
 }
 
 finalpage::~finalpage()
